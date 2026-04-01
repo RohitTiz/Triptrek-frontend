@@ -1,3 +1,4 @@
+// components/Header.jsx
 import { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Globe, Search, User, MapPin, LogOut, Settings } from 'lucide-react';
@@ -172,36 +173,36 @@ const Header = () => {
 
   return (
     <>
-      <header className={`fixed inset-x-0 top-6 z-50 transition-all duration-300`}>
+      <header className={`fixed inset-x-0 top-4 z-50 transition-all duration-300`}>
         <div className="mx-4 lg:mx-8 xl:mx-12">
-          <div className={`rounded-2xl transition-all duration-300 shadow-2xl ${
+          <div className={`rounded-xl transition-all duration-300 shadow-xl ${
             isScrolled || !isHomePage
               ? 'bg-white/98 backdrop-blur-lg border border-gray-200' 
               : 'bg-white/95 backdrop-blur-md shadow-[0_10px_60px_-15px_rgba(0,0,0,0.3)]'
           }`}>
-            <div className="px-4 sm:px-6 lg:px-8 py-3 lg:py-4">
-              <div className="flex min-h-14 lg:min-h-16 items-center justify-between">
+            <div className="px-4 sm:px-6 lg:px-8 py-2 sm:py-2.5 lg:py-3">
+              <div className="flex min-h-12 lg:min-h-14 items-center justify-between">
                 {/* Logo */}
                 <a 
                   href="/" 
                   onClick={(e) => handleNavClick('/', e)}
-                  className="flex cursor-pointer items-center gap-2 sm:gap-3"
+                  className="flex cursor-pointer items-center gap-2 sm:gap-2.5"
                 >
                   <div className="relative">
-                    <div className={`relative flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 ${
+                    <div className={`relative flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-full border-2 ${
                       isScrolled || !isHomePage
                         ? 'border-green-600 bg-white' 
                         : 'border-white bg-gradient-to-r from-saffron-500 to-green-600'
                     }`}>
-                      <Globe className={`h-5 w-5 sm:h-6 sm:w-6 ${
+                      <Globe className={`h-4 w-4 sm:h-5 sm:w-5 ${
                         isScrolled || !isHomePage ? 'text-gray-900' : 'text-white'
                       }`} />
-                      <div className={`absolute -bottom-1 -right-1 flex h-4 w-4 sm:h-5 sm:w-5 items-center justify-center rounded-full border ${
+                      <div className={`absolute -bottom-1 -right-1 flex h-3.5 w-3.5 sm:h-4 sm:w-4 items-center justify-center rounded-full border ${
                         isScrolled || !isHomePage
                           ? 'border-green-600 bg-white' 
                           : 'border-white bg-white'
                       }`}>
-                        <MapPin className={`h-2.5 w-2.5 sm:h-3 sm:w-3 ${
+                        <MapPin className={`h-2 w-2 sm:h-2.5 sm:w-2.5 ${
                           isScrolled || !isHomePage ? 'text-green-600' : 'text-saffron-600'
                         } fill-current`} />
                       </div>
@@ -210,7 +211,7 @@ const Header = () => {
                   
                   <div className="flex flex-col leading-tight">
                     <div className="relative">
-                      <span className={`text-lg font-bold sm:text-xl ${
+                      <span className={`text-base font-bold sm:text-lg ${
                         isScrolled || !isHomePage
                           ? 'text-gray-900' 
                           : 'text-green-700'
@@ -218,7 +219,7 @@ const Header = () => {
                         trip.trekindia
                       </span>
                     </div>
-                    <span className={`text-xs font-medium ${
+                    <span className={`text-[10px] font-medium sm:text-xs ${
                       isScrolled || !isHomePage ? 'text-gray-600' : 'text-green-600'
                     }`}>
                       Explore Incredible India
@@ -227,23 +228,23 @@ const Header = () => {
                 </a>
 
                 {/* Delhi Location Badge */}
-                <div className={`hidden items-center gap-2 rounded-full px-4 py-2 transition-all duration-300 lg:flex ${
+                <div className={`hidden items-center gap-2 rounded-full px-3 py-1.5 transition-all duration-300 lg:flex ${
                   isScrolled || !isHomePage
                     ? 'bg-gray-50 text-gray-800 border border-gray-200' 
                     : 'bg-gray-50 text-gray-800 border border-gray-200'
                 }`}>
-                  <MapPin className="h-4 w-4 text-gray-600" />
-                  <span className="text-sm font-medium">Based in Delhi, India</span>
+                  <MapPin className="h-3.5 w-3.5 text-gray-600" />
+                  <span className="text-xs font-medium">Based in Delhi, India</span>
                 </div>
 
                 {/* Desktop Navigation */}
-                <nav className="hidden items-center gap-4 lg:flex lg:gap-6">
+                <nav className="hidden items-center gap-4 lg:flex lg:gap-5">
                   {navItems.map((item) => (
                     <a
                       key={item.label}
                       href={item.href}
                       onClick={(e) => handleNavClick(item.href, e)}
-                      className={`relative font-medium transition-all duration-300 group text-gray-800 hover:text-green-600`}
+                      className={`relative text-sm font-medium transition-all duration-300 group text-gray-800 hover:text-green-600`}
                     >
                       {item.label}
                       <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-green-500 transition-all duration-300 group-hover:w-full"></span>
@@ -252,22 +253,22 @@ const Header = () => {
                 </nav>
 
                 {/* Right side buttons */}
-                <div className="hidden items-center gap-3 lg:flex lg:gap-4">
-                  <button className={`p-2 transition-colors duration-300 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-green-600`}>
-                    <Search className="h-5 w-5" />
+                <div className="hidden items-center gap-2 lg:flex lg:gap-3">
+                  <button className={`p-1.5 transition-colors duration-300 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-green-600`}>
+                    <Search className="h-4 w-4" />
                   </button>
                   
                   {/* User Profile Button with Dropdown */}
                   <div className="user-dropdown-container relative">
                     <button 
                       onClick={handleUserClick}
-                      className={`p-2 transition-colors duration-300 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-green-600 flex items-center gap-2 ${
+                      className={`p-1.5 transition-colors duration-300 rounded-lg hover:bg-gray-100 text-gray-600 hover:text-green-600 flex items-center gap-1.5 ${
                         currentUser ? 'bg-gray-50' : ''
                       }`}
                     >
-                      <User className="h-5 w-5" />
+                      <User className="h-4 w-4" />
                       {currentUser && (
-                        <span className="text-sm font-medium hidden xl:inline">
+                        <span className="text-xs font-medium hidden xl:inline">
                           Hi, {currentUser.name?.split(' ')[0] || 'User'}
                         </span>
                       )}
@@ -332,13 +333,10 @@ const Header = () => {
                     )}
                   </div>
                   
+                  {/* Book Indian Tour Button - ALWAYS GREEN */}
                   <button 
                     onClick={handleBookTour}
-                    className={`rounded-full px-5 py-2.5 font-medium shadow-lg transition-all duration-300 lg:px-6 ${
-                      isScrolled || !isHomePage
-                        ? 'bg-gradient-to-r from-saffron-500 to-saffron-600 text-white hover:from-saffron-600 hover:to-saffron-700 shadow-lg' 
-                        : 'bg-gradient-to-r from-green-600 to-green-700 text-white hover:from-green-700 hover:to-green-800 shadow-lg'
-                    }`}
+                    className="rounded-full bg-gradient-to-r from-green-600 to-green-700 px-4 py-2 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:from-green-700 hover:to-green-800 hover:shadow-xl"
                   >
                     Book Indian Tour
                   </button>
@@ -349,27 +347,27 @@ const Header = () => {
                   className={`p-2 transition-colors duration-300 lg:hidden hover:bg-gray-100 rounded-lg text-gray-600 hover:text-green-600`}
                   onClick={() => setIsMenuOpen(!isMenuOpen)}
                 >
-                  {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                  {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
                 </button>
               </div>
             </div>
 
             {/* Mobile Navigation */}
             {isMenuOpen && (
-              <div className="border-t border-gray-100 bg-white py-4 shadow-inner rounded-b-2xl lg:hidden">
+              <div className="border-t border-gray-100 bg-white py-3 shadow-inner rounded-b-xl lg:hidden">
                 {/* Mobile Location Badge */}
-                <div className="mx-4 mb-4 flex items-center justify-center gap-2 rounded-lg bg-gray-50 px-4 py-3 border border-gray-200">
-                  <MapPin className="h-4 w-4 text-gray-600" />
-                  <span className="text-sm font-medium text-gray-800">Based in Delhi, India</span>
+                <div className="mx-4 mb-3 flex items-center justify-center gap-2 rounded-lg bg-gray-50 px-3 py-2 border border-gray-200">
+                  <MapPin className="h-3.5 w-3.5 text-gray-600" />
+                  <span className="text-xs font-medium text-gray-800">Based in Delhi, India</span>
                 </div>
                 
-                <div className="flex flex-col gap-1">
+                <div className="flex flex-col gap-0.5">
                   {navItems.map((item) => (
                     <a
                       key={item.label}
                       href={item.href}
                       onClick={(e) => handleNavClick(item.href, e)}
-                      className="mx-2 rounded-lg px-4 py-3 font-medium text-gray-800 hover:bg-gray-100 hover:text-green-600 transition-all duration-300"
+                      className="mx-2 rounded-lg px-4 py-2.5 text-sm font-medium text-gray-800 hover:bg-gray-100 hover:text-green-600 transition-all duration-300"
                     >
                       {item.label}
                     </a>
@@ -377,29 +375,29 @@ const Header = () => {
                   
                   {/* User info in mobile menu */}
                   {currentUser && (
-                    <div className="mx-4 mb-3 px-4 py-3 bg-gray-50 rounded-lg border border-gray-200">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-r from-saffron-400 to-green-500 text-white font-bold">
+                    <div className="mx-4 my-2 px-3 py-2 bg-gray-50 rounded-lg border border-gray-200">
+                      <div className="flex items-center gap-2">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-saffron-400 to-green-500 text-white font-bold text-sm">
                           {currentUser.name?.charAt(0) || currentUser.email?.charAt(0) || 'U'}
                         </div>
                         <div>
-                          <p className="font-medium text-gray-900">{currentUser.name || 'User'}</p>
-                          <p className="text-xs text-gray-500">{currentUser.email}</p>
+                          <p className="font-medium text-gray-900 text-sm">{currentUser.name || 'User'}</p>
+                          <p className="text-xs text-gray-500 truncate">{currentUser.email}</p>
                         </div>
                       </div>
                       
-                      <div className="mt-3 grid grid-cols-2 gap-2">
+                      <div className="mt-2 grid grid-cols-2 gap-2">
                         <a 
                           href="/profile" 
                           onClick={(e) => handleNavClick('/profile', e)}
-                          className="rounded-lg bg-white px-3 py-2 text-center text-sm font-medium text-gray-700 border border-gray-300 hover:bg-gray-100"
+                          className="rounded-lg bg-white px-2 py-1.5 text-center text-xs font-medium text-gray-700 border border-gray-300 hover:bg-gray-100"
                         >
                           Profile
                         </a>
                         <a 
                           href="/bookings" 
                           onClick={(e) => handleNavClick('/bookings', e)}
-                          className="rounded-lg bg-white px-3 py-2 text-center text-sm font-medium text-gray-700 border border-gray-300 hover:bg-gray-100"
+                          className="rounded-lg bg-white px-2 py-1.5 text-center text-xs font-medium text-gray-700 border border-gray-300 hover:bg-gray-100"
                         >
                           Bookings
                         </a>
@@ -407,28 +405,29 @@ const Header = () => {
                     </div>
                   )}
                   
-                  <div className="space-y-3 px-4 pt-2">
+                  <div className="space-y-2 px-4 pt-2">
                     {!currentUser ? (
                       <button 
                         onClick={handleUserClick}
-                        className="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-6 py-3 font-medium text-gray-800 transition-all duration-300 hover:bg-gray-100 shadow-sm"
+                        className="flex w-full items-center justify-center rounded-full border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-800 transition-all duration-300 hover:bg-gray-100 shadow-sm"
                       >
-                        <User className="mr-2 h-5 w-5" />
+                        <User className="mr-2 h-4 w-4" />
                         Sign In / Sign Up
                       </button>
                     ) : (
                       <button 
                         onClick={handleLogout}
-                        className="flex w-full items-center justify-center rounded-full border border-red-200 bg-white px-6 py-3 font-medium text-red-600 transition-all duration-300 hover:bg-red-50 shadow-sm"
+                        className="flex w-full items-center justify-center rounded-full border border-red-200 bg-white px-4 py-2.5 text-sm font-medium text-red-600 transition-all duration-300 hover:bg-red-50 shadow-sm"
                       >
-                        <LogOut className="mr-2 h-5 w-5" />
+                        <LogOut className="mr-2 h-4 w-4" />
                         Logout
                       </button>
                     )}
                     
+                    {/* Mobile Book Indian Tour Button - ALWAYS GREEN */}
                     <button 
                       onClick={handleBookTour}
-                      className="w-full rounded-full bg-gradient-to-r from-green-600 to-green-700 px-6 py-3 font-medium text-white shadow-lg transition-all duration-300 hover:from-green-700 hover:to-green-800"
+                      className="w-full rounded-full bg-gradient-to-r from-green-600 to-green-700 px-4 py-2.5 text-sm font-medium text-white shadow-lg transition-all duration-300 hover:from-green-700 hover:to-green-800"
                     >
                       Book Indian Tour
                     </button>

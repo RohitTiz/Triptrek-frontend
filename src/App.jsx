@@ -1,13 +1,13 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Layout from './components/Layout'
-import HomePage from './pages/HomePage'
-import BlogsPage from './pages/BlogsPage'
-import BlogPostPage from './pages/BlogPostPage'
-import DestinationDetail from './pages/DestinationDetail'
-import PackageDetail from './pages/PackageDetail'
-import Payment from './pages/Payment'
-import AuthCallback from './components/AuthCallback'
-import ProfilePage from './pages/ProfilePage'  // ADD THIS
+// App.jsx
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Layout from './components/Layout';
+import HomePage from './pages/HomePage';
+import BlogsPage from './pages/BlogsPage';
+import BlogPostPage from './pages/BlogPostPage';
+import UnifiedDetail from './pages/UnifiedDetail';  // NEW - replaces both detail pages
+import Payment from './pages/Payment';
+import AuthCallback from './components/AuthCallback';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
@@ -23,14 +23,15 @@ function App() {
             <HomePage />
           </Layout>
         } />
+        {/* NEW - Unified detail route for both destinations and packages */}
         <Route path="/destination/:id" element={
           <Layout>
-            <DestinationDetail />
+            <UnifiedDetail />
           </Layout>
         } />
         <Route path="/package/:id" element={
           <Layout>
-            <PackageDetail />
+            <UnifiedDetail />
           </Layout>
         } />
         <Route path="/package/:id/payment" element={
@@ -48,7 +49,6 @@ function App() {
             <BlogPostPage />
           </Layout>
         } />
-        {/* ADD PROFILE ROUTE */}
         <Route path="/profile" element={
           <Layout>
             <ProfilePage />
@@ -57,7 +57,7 @@ function App() {
         <Route path="/auth/callback" element={<AuthCallback />} />
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
