@@ -1,9 +1,12 @@
 // src/services/api.js
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
+
+// Sirf REACT_APP_API_URL use karega, VITE hata diya
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080/api';
 
 class ApiService {
     constructor() {
         this.baseURL = API_BASE_URL;
+        console.log('API Base URL:', this.baseURL);
     }
 
     async request(endpoint, options = {}) {
