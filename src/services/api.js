@@ -1,8 +1,12 @@
 // src/services/api.js
 
+// Sirf REACT_APP_API_URL use karega, VITE hata diya
+const API_BASE_URL = process.env.REACT_APP_API_URL ;
+
 class ApiService {
     constructor() {
-        this.baseURL = "https://triptrek-backend-1.onrender.com/api"; // ✅ hardcoded
+        this.baseURL = API_BASE_URL;
+        console.log('API Base URL:', this.baseURL);
     }
 
     async request(endpoint, options = {}) {
@@ -34,7 +38,7 @@ class ApiService {
         }
     }
 
-    // APIs
+    // Enquiry APIs
     async submitEnquiry(data) {
         return this.request('/enquiries', {
             method: 'POST',
