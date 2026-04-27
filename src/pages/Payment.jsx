@@ -315,9 +315,9 @@ const Payment = () => {
                   </div>
                   <div className="text-center">
                     <a href="tel:+919876543210" className="text-sm font-medium text-blue-600 hover:text-blue-700 sm:text-base">
-                      +91 98765 43210
+                      +91 7827716233
                     </a>
-                    <p className="mt-0.5 text-xs text-gray-500 sm:mt-1 sm:text-sm">support@travel.com</p>
+                    <p className="mt-0.5 text-xs text-gray-500 sm:mt-1 sm:text-sm">triptrek.india04@gmail.com</p>
                   </div>
                 </div>
               </div>

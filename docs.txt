@@ -1,0 +1,424 @@
+📚 TripTrek India - Frontend Documentation
+Project Overview
+TripTrek India is a React-based travel package booking platform that allows users to browse destinations, view travel packages, and make secure payments. The application features a modern UI with Tailwind CSS, responsive design, and seamless navigation.
+
+🗂️ Complete Folder Structure
+text
+triptrek-india/
+│
+├── public/
+│   └── index.html
+│
+├── src/
+│   ├── assets/              # Images, fonts, static files
+│   │
+│   ├── components/          # Reusable UI components
+│   │   ├── AuthCallback.jsx
+│   │   ├── DestinationCard.jsx
+│   │   ├── Destinations.jsx
+│   │   ├── EnquiryModal.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Header.jsx
+│   │   ├── Hero.jsx
+│   │   ├── Layout.jsx
+│   │   ├── LoginModal.jsx
+│   │   ├── PackageCard.jsx
+│   │   ├── Packages.jsx
+│   │   ├── ScrollToTop.jsx
+│   │   └── Testimonials.jsx
+│   │
+│   ├── data/               # Static data files
+│   │   ├── blogs.js
+│   │   ├── destinations.js
+│   │   ├── packages.js
+│   │   └── testimonials.js
+│   │
+│   ├── pages/              # Page components
+│   │   ├── BlogPostPage.jsx
+│   │   ├── BlogsPage.jsx
+│   │   ├── DestinationDetail.jsx (Not in use - replaced)
+│   │   ├── HomePage.jsx
+│   │   ├── PackageDetail.jsx (Not in use - replaced)
+│   │   ├── Payment.jsx
+│   │   ├── ProfilePage.jsx
+│   │   ├── SettingsPage.jsx
+│   │   └── UnifiedDetail.jsx (ACTIVE - replaces both detail pages)
+│   │
+│   ├── services/           # API services
+│   │   └── api.js
+│   │
+│   ├── App.css
+│   ├── App.jsx             # Main routing configuration
+│   ├── index.css
+│   └── main.jsx            # Entry point
+│
+├── .env                    # Environment variables
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── README.md
+├── tailwind.config.js
+└── vite.config.js
+📄 Detailed File Documentation
+1. src/main.jsx - Entry Point
+javascript
+// Renders the App component into the DOM
+// Sets up React Router and Strict Mode
+Purpose: Application entry point that mounts the React app to the DOM.
+
+2. src/App.jsx - Routing Configuration
+Route Path	Component	Description
+/	HomePage	Home page with all sections
+/destinations	HomePage	Same as home (scrolls to destinations)
+/destination/:id	UnifiedDetail	Shows destination details (Kakani Lake, Chakrata, Kedarnath, Tungnath)
+/package/:id	UnifiedDetail	Shows package details (Char Dham)
+/package/:id/payment	Payment	Payment page for packages
+/blogs	BlogsPage	All blog posts listing
+/blogs/:slug	BlogPostPage	Individual blog post
+/profile	ProfilePage	User profile page
+/auth/callback	AuthCallback	OAuth callback handler
+Layout Wrapper: All routes (except /auth/callback) use the Layout component which includes Header and Footer.
+
+3. Data Files (src/data/)
+destinations.js - CURRENT DATA (4 destinations)
+ID	Name	Price	Duration
+kakani-lake	Kakani Lake	₹6,500	3D/2N
+chakrata	Chakrata	₹7,000	3D/2N
+kedarnath	Kedarnath	₹8,000	4D/3N
+tungnath	Tungnath	₹6,000	4D/3N
+Each destination object contains:
+
+id, name, image, description, price, duration, season
+
+highlights (array)
+
+bestTime, difficulty, rating, reviews
+
+includes (array)
+
+itinerary (array of day-by-day plan)
+
+packages.js - CURRENT DATA (1 package)
+ID	Name	Price	Duration
+char-dham-package	Char Dham Yatra Package	₹25,000	12D/11N
+Each package object contains:
+
+id, name, description, price, duration, image
+
+features (array)
+
+rating, reviews, popular (boolean)
+
+inclusions (array)
+
+exclusions (array)
+
+itinerary (array of day-by-day plan)
+
+blogs.js - Blog posts data
+Contains blog articles with slug, title, content, author, date
+
+testimonials.js - User reviews data
+Contains customer testimonials with name, rating, comment, destination
+
+4. Component Files (src/components/)
+Layout.jsx
+Wrapper component for all pages
+
+Renders Header and Footer around children content
+
+Includes ScrollToTop component for automatic scroll reset on navigation
+
+Header.jsx
+Navigation bar with logo, menu links
+
+Mobile responsive hamburger menu
+
+Links: Home, Destinations, Packages, Blogs, Profile
+
+Footer.jsx - CONTACT INFO (as of Task 1)
+text
+Phone: 7827716233
+Email: TripTrek.India04@gmail.com
+Instagram: @TripTrekIndia
+Footer Sections:
+
+Company info with contact details
+
+Quick links navigation
+
+Our Destinations list (Kakani Lake, Chakrata, Chau Dam, Kedarnath, Tungnath)
+
+Newsletter subscription form
+
+Social media links (Facebook, Instagram, Twitter, YouTube)
+
+Indian pride section with certifications
+
+Hero.jsx
+Homepage hero section
+
+Call-to-action buttons
+
+Destinations.jsx
+Displays grid of destination cards
+
+Uses DestinationCard component
+
+Pulls data from destinations.js
+
+DestinationCard.jsx
+Individual destination card
+
+Shows image, name, price, duration, rating
+
+Links to /destination/:id
+
+Packages.jsx
+Displays grid of package cards
+
+Uses PackageCard component
+
+Pulls data from packages.js
+
+PackageCard.jsx
+Individual package card
+
+Shows image, name, price, duration, rating, popular badge
+
+Links to /package/:id
+
+EnquiryModal.jsx
+Modal popup for booking enquiries
+
+Opens when user clicks "Make an Enquiry" button
+
+Collects: name, email, phone, message
+
+LoginModal.jsx
+Modal for user login/signup
+
+Authentication functionality
+
+AuthCallback.jsx
+Handles OAuth callback from Google/Facebook login
+
+ScrollToTop.jsx
+Automatically scrolls to top on route change
+
+Testimonials.jsx
+Displays customer reviews carousel
+
+Pulls data from testimonials.js
+
+5. Page Files (src/pages/)
+HomePage.jsx
+Main landing page
+
+Includes: Hero, Destinations, Packages, Testimonials sections
+
+UnifiedDetail.jsx - ⭐ ACTIVE DETAIL PAGE
+Purpose: Handles BOTH destinations and packages details using the same component.
+
+Key Functions:
+
+javascript
+// Detects if showing destination or package
+const isDestination = location.pathname.includes('/destination/');
+
+// Fetches correct data
+const item = isDestination 
+  ? destinations.find(d => d.id === id)
+  : packages.find(p => p.id === id);
+
+// Payment handler
+const handleProceedToPayment = () => {
+  navigate(`/package/${paymentId}/payment`, {
+    state: { ...bookingData }
+  });
+};
+Features:
+
+Hero section with image and details
+
+Image gallery with navigation
+
+Highlights/Features display
+
+Inclusions/Exclusions (for packages)
+
+Booking sidebar with:
+
+Date picker
+
+Travelers counter
+
+Coupon code input (SUMMER15 = 15% off, WELCOME10 = 10% off)
+
+Price calculator with taxes (18%)
+
+"Proceed to Payment" button
+
+"Make an Enquiry" button
+
+Payment.jsx
+Payment processing page
+
+Receives booking data via location.state
+
+Fields: name, email, phone
+
+Payment methods: Credit/Debit Card, UPI, Net Banking
+
+Shows order summary with price breakdown
+
+On successful payment → navigates to success page
+
+BlogsPage.jsx
+Lists all blog posts
+
+Links to individual blog posts
+
+BlogPostPage.jsx
+Shows single blog post
+
+Uses slug from URL params
+
+ProfilePage.jsx
+User profile dashboard
+
+Shows bookings, settings, preferences
+
+SettingsPage.jsx
+User account settings
+
+DestinationDetail.jsx - (DEPRECATED)
+No longer used (replaced by UnifiedDetail)
+
+Keep file but not used in routing
+
+PackageDetail.jsx - (DEPRECATED)
+No longer used (replaced by UnifiedDetail)
+
+Keep file but not used in routing
+
+6. Services (src/services/)
+api.js
+Handles API calls to backend
+
+Functions: fetchDestinations, fetchPackages, createBooking, etc.
+
+7. Configuration Files
+tailwind.config.js
+Tailwind CSS configuration
+
+Custom colors (saffron, green for Indian theme)
+
+vite.config.js
+Vite build tool configuration
+
+.env
+Environment variables (API keys, backend URLs)
+
+🔄 Data Flow Diagram
+text
+User clicks on Destination/Package Card
+    ↓
+Navigates to /destination/:id or /package/:id
+    ↓
+UnifiedDetail.jsx loads
+    ↓
+Detects route type (destination or package)
+    ↓
+Fetches data from destinations.js or packages.js
+    ↓
+Displays details with booking sidebar
+    ↓
+User selects date, travelers, applies coupon
+    ↓
+Clicks "Proceed to Payment"
+    ↓
+Navigates to /package/:id/payment with booking data in state
+    ↓
+Payment.jsx displays order summary and payment form
+    ↓
+User submits payment
+    ↓
+Success page (booking confirmed)
+🎨 Styling Guidelines
+Framework: Tailwind CSS
+
+Color Scheme:
+
+Primary: Blue to Purple gradients (from-blue-600 to-purple-600)
+
+Indian Theme: Saffron (saffron-500), Green (green-500), White
+
+Background: Gray-50 to white gradient
+
+Responsive Breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px)
+
+Icons: lucide-react library
+
+🔧 Future Update Instructions
+When you need to update any section of this documentation, follow these guidelines:
+
+To Add a New Destination:
+Open src/data/destinations.js
+
+Add new object to the destinations array
+
+Include all required fields (id, name, price, duration, etc.)
+
+No routing changes needed (UnifiedDetail handles dynamically)
+
+To Add a New Package:
+Open src/data/packages.js
+
+Add new object to the packages array
+
+Include all required fields (id, name, price, duration, etc.)
+
+To Update Contact Info:
+Open src/components/Footer.jsx
+
+Update lines containing:
+
+TripTrek.India04@gmail.com
+
+7827716233
+
+@TripTrekIndia
+
+To Add a New Route:
+Open src/App.jsx
+
+Add new <Route> component
+
+Wrap with <Layout> if header/footer needed
+
+To Modify Payment Flow:
+Update src/pages/UnifiedDetail.jsx (handleProceedToPayment function)
+
+Update src/pages/Payment.jsx (payment processing)
+
+📝 Current Data Summary (As of Latest Update)
+Type	Count	Items
+Destinations	4	Kakani Lake (₹6,500), Chakrata (₹7,000), Kedarnath (₹8,000), Tungnath (₹6,000)
+Packages	1	Char Dham Yatra (₹25,000)
+Blogs	Variable	From blogs.js
+Testimonials	Variable	From testimonials.js
+✅ Version History
+Version	Date	Changes
+1.0	Initial	Project setup with all destinations and packages
+1.1	Latest	Updated to 4 destinations + 1 package, added UnifiedDetail, fixed payment flow
+🚀 How to Use This Document
+Keep this file in your GitHub repository as PROJECT_DOCUMENTATION.md
+
+When making changes, update this document in the relevant section
+
+When asking for AI help, reference this document and specify which section needs updating
+
+Use the "Future Update Instructions" as a quick reference

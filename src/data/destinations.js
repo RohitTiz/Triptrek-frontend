@@ -161,5 +161,43 @@ export const destinations = [
         description: 'Drive back to Rishikesh for departure'
       }
     ]
+  },
+  {
+    id: 'yulla-kunda',
+    name: 'Yulla Kunda',
+    image: 'https://images.unsplash.com/photo-1581791534721-e599df4417f7?q=80&w=1331&auto=format&fit=crop',
+    description: 'A serene and offbeat Himalayan destination with pristine landscapes, perfect for peace seekers and nature enthusiasts.',
+    price: 7000,
+    duration: '3D/2N',
+    season: 'Apr-Oct',
+    highlights: [
+      'Scenic Valley Views',
+      'Hidden Waterfalls',
+      'Local Village Experience',
+      'Nature Trails',
+      'Camping under Stars'
+    ],
+    bestTime: 'April to October',
+    difficulty: 'Easy',
+    rating: 4.7,
+    reviews: 45,
+    includes: ['Accommodation', 'Local Guide', 'Meals', 'Transport'],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival & Check-in',
+        description: 'Arrive at Yulla Kunda base camp, check-in to accommodation, evening orientation'
+      },
+      {
+        day: 2,
+        title: 'Exploration Day',
+        description: 'Full day exploring the valley, visiting waterfalls, and local villages'
+      },
+      {
+        day: 3,
+        title: 'Departure',
+        description: 'Morning breakfast and return journey with beautiful memories'
+      }
+    ]
   }
 ];
