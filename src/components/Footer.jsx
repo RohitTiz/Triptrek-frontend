@@ -12,19 +12,18 @@ const Footer = () => {
   ]
 
   const indianDestinations = [
-    { label: 'Delhi Heritage Tours', href: '#' },
-    { label: 'Kerala Backwaters', href: '#' },
-    { label: 'Ladakh Adventure', href: '#' },
-    { label: 'Rajasthan Heritage', href: '#' },
-    { label: 'Goa Beaches', href: '#' },
-    { label: 'Himalayan Treks', href: '#' }
+    { label: 'Kakani Lake', href: '/destination/kakani-lake' },
+    { label: 'Chakrata', href: '/destination/chakrata' },
+    { label: 'Chau Dam', href: '/destination/chau-dam' },
+    { label: 'Kedarnath', href: '/destination/kedarnath' },
+    { label: 'Tungnath', href: '/destination/tungnath' }
   ]
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Youtube, href: '#', label: 'YouTube' }
+    { icon: Facebook, href: 'https://facebook.com/TripTrekIndia', label: 'Facebook' },
+    { icon: Instagram, href: 'https://instagram.com/TripTrekIndia', label: 'Instagram' },
+    { icon: Twitter, href: 'https://twitter.com/TripTrekIndia', label: 'Twitter' },
+    { icon: Youtube, href: 'https://youtube.com/TripTrekIndia', label: 'YouTube' }
   ]
 
   // Indian certification badges
@@ -75,7 +74,7 @@ const Footer = () => {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-lg font-bold sm:text-xl lg:text-2xl">
-                    trip.trekindia
+                    TripTrek India
                   </span>
                   <span className="text-xs text-gray-400 sm:text-sm">Made in India 🇮🇳</span>
                 </div>
@@ -86,11 +85,15 @@ const Footer = () => {
               <div className="space-y-2 sm:space-y-3">
                 <div className="flex items-center gap-2 sm:gap-3">
                   <Mail className="h-4 w-4 text-saffron-400 sm:h-5 sm:w-5" />
-                  <span className="text-sm text-gray-300 sm:text-base">info@trip.trekindia.com</span>
+                  <span className="text-sm text-gray-300 sm:text-base">TripTrek.India04@gmail.com</span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <Phone className="h-4 w-4 text-saffron-400 sm:h-5 sm:w-5" />
-                  <span className="text-sm text-gray-300 sm:text-base">+91 11 2345 6789</span>
+                  <span className="text-sm text-gray-300 sm:text-base">7827716233</span>
+                </div>
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <Instagram className="h-4 w-4 text-saffron-400 sm:h-5 sm:w-5" />
+                  <span className="text-sm text-gray-300 sm:text-base">@TripTrekIndia</span>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <MapPin className="h-4 w-4 text-saffron-400 sm:h-5 sm:w-5" />
@@ -125,18 +128,18 @@ const Footer = () => {
             {/* Indian Destinations */}
             <div>
               <h3 className="mb-4 flex items-center text-base font-bold sm:mb-6 sm:text-lg lg:text-xl">
-                <span className="text-green-400">Indian Experiences</span>
+                <span className="text-green-400">Our Destinations</span>
               </h3>
               <ul className="space-y-2 sm:space-y-3">
                 {indianDestinations.map((destination, index) => (
                   <li key={index}>
-                    <a 
-                      href={destination.href}
+                    <Link 
+                      to={destination.href}
                       className="flex items-center gap-2 text-sm text-gray-400 transition-colors duration-300 hover:text-green-300 sm:text-base"
                     >
                       <span className="text-green-500 text-base">•</span>
                       <span>{destination.label}</span>
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -198,6 +201,8 @@ const Footer = () => {
                   <a
                     key={social.label}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="transform rounded-full bg-gray-800 p-1.5 text-gray-400 transition-colors duration-300 hover:scale-110 hover:text-saffron-300 sm:p-2"
                     aria-label={social.label}
                   >
@@ -208,7 +213,7 @@ const Footer = () => {
               
               <div className="text-center">
                 <p className="text-sm text-gray-400 sm:text-base">
-                  © {new Date().getFullYear()} trip.trekindia. 🇮🇳 Made in India with Pride.
+                  © {new Date().getFullYear()} TripTrek India. 🇮🇳 Made in India with Pride.
                 </p>
                 <p className="mt-1 text-xs text-gray-500 sm:mt-1 sm:text-sm">Supporting Indian tourism and local communities</p>
               </div>
