@@ -1,4 +1,4 @@
-// src/pages/UnifiedDetail.jsx
+// src/pages/UnifiedDetail.jsx (FIXED VERSION)
 import { useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import {
@@ -45,48 +45,44 @@ const UnifiedDetail = () => {
     }).format(price);
   };
 
-  const handleProceedToPayment = () => {
-    if (isDestination) {
-      // For destinations, find a related package or just navigate to packages
-      const relatedPackage = packages.find(p => p.destinations?.includes(id));
-      if (relatedPackage) {
-        navigate(`/package/${relatedPackage.id}/payment`, {
-          state: {
-            packageId: relatedPackage.id,
-            packageName: relatedPackage.name,
-            basePrice: relatedPackage.price,
-            travelers,
-            selectedDate: selectedDate || new Date().toISOString().split('T')[0],
-            totalAmount: calculateTotalAmount(relatedPackage.price),
-            image: item.image,
-            type: 'package'
-          }
-        });
-      } else {
-        navigate('/packages');
-      }
-    } else {
-      navigate(`/package/${item.id}/payment`, {
-        state: {
-          packageId: item.id,
-          packageName: item.name,
-          basePrice: item.price,
-          travelers,
-          selectedDate: selectedDate || new Date().toISOString().split('T')[0],
-          totalAmount: calculateTotalAmount(item.price),
-          image: item.image,
-          type: 'package'
-        }
-      });
-    }
-  };
-
+  // Fixed: Calculate total with coupon
   const calculateTotalAmount = (price) => {
     let total = price * travelers;
     if (appliedCoupon) {
       total = total - (total * appliedCoupon.discount / 100);
     }
     return total * 1.18;
+  };
+
+  // Fixed: Handle payment navigation correctly
+  const handleProceedToPayment = () => {
+    if (!item) return;
+    
+    // Calculate final amount
+    let basePrice = item.price;
+    let finalPrice = basePrice * travelers;
+    if (appliedCoupon) {
+      finalPrice = finalPrice - (finalPrice * appliedCoupon.discount / 100);
+    }
+    const totalAmount = finalPrice * 1.18;
+    
+    // For destinations: create a virtual package ID or use destination ID
+    const paymentId = isDestination ? `dest_${item.id}` : item.id;
+    
+    navigate(`/package/${paymentId}/payment`, {
+      state: {
+        packageId: item.id,
+        packageName: item.name,
+        destinationId: isDestination ? item.id : null,
+        basePrice: basePrice,
+        travelers: travelers,
+        selectedDate: selectedDate || new Date().toISOString().split('T')[0],
+        totalAmount: totalAmount,
+        image: item.image,
+        type: isDestination ? 'destination' : 'package',
+        couponApplied: appliedCoupon
+      }
+    });
   };
 
   const applyCoupon = () => {
@@ -268,7 +264,7 @@ const UnifiedDetail = () => {
             {/* Inclusions & Exclusions (for packages) */}
             {(item.inclusions || item.exclusions) && (
               <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
-                {item.inclusions && (
+                {item.inclusions && item.inclusions.length > 0 && (
                   <div className="rounded-2xl bg-white p-4 shadow-xl sm:p-6 lg:p-8">
                     <h3 className="mb-4 text-lg font-bold text-gray-900 sm:mb-6 sm:text-xl">What's Included</h3>
                     <ul className="space-y-3 sm:space-y-4">
@@ -283,7 +279,7 @@ const UnifiedDetail = () => {
                     </ul>
                   </div>
                 )}
-                {item.exclusions && (
+                {item.exclusions && item.exclusions.length > 0 && (
                   <div className="rounded-2xl bg-white p-4 shadow-xl sm:p-6 lg:p-8">
                     <h3 className="mb-4 text-lg font-bold text-gray-900 sm:mb-6 sm:text-xl">What's Not Included</h3>
                     <ul className="space-y-3 sm:space-y-4">
@@ -363,7 +359,7 @@ const UnifiedDetail = () => {
                       type="text"
                       value={couponCode}
                       onChange={(e) => setCouponCode(e.target.value)}
-                      placeholder="SUMMER15"
+                      placeholder="SUMMER15 or WELCOME10"
                       className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 sm:px-4 sm:py-3"
                     />
                     <button
@@ -456,11 +452,11 @@ const UnifiedDetail = () => {
                 <div className="mt-4 border-t border-blue-200 pt-4">
                   <div className="flex items-center gap-2 text-xs text-gray-600 sm:text-sm">
                     <Phone className="h-3.5 w-3.5 text-blue-600" />
-                    <span>Need help? Call us: +91 98765 43210</span>
+                    <span>Need help? Call us: 7827716233</span>
                   </div>
                   <div className="mt-2 flex items-center gap-2 text-xs text-gray-600 sm:text-sm">
                     <Mail className="h-3.5 w-3.5 text-blue-600" />
-                    <span>support@triptrek.com</span>
+                    <span>TripTrek.India04@gmail.com</span>
                   </div>
                 </div>
               </div>
