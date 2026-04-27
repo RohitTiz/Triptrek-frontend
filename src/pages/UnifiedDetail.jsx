@@ -1,4 +1,3 @@
-// src/pages/UnifiedDetail.jsx (FIXED VERSION)
 import { useState } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import {
@@ -125,7 +124,7 @@ const UnifiedDetail = () => {
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero Section - Image full top tak, text niche */}
       <div className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-purple-900 to-gray-900">
         <div className="absolute inset-0">
           <img
@@ -135,7 +134,8 @@ const UnifiedDetail = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
         </div>
-        <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16">
+        {/* Yahan padding-top add kiya hai taaki text header se niche aaye */}
+        <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 pt-28 sm:pt-32 lg:pt-36">
           <div className="max-w-4xl">
             <div className="mb-4 flex flex-wrap gap-2 sm:mb-6 sm:gap-3">
               {item.popular && (

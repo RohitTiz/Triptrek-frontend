@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Hero = () => {
   return (
-    <section className="relative flex min-h-screen items-center justify-center pt-16">
+    <section className="relative flex min-h-screen items-center justify-center pt-28 sm:pt-32 lg:pt-36">
       {/* Background Image - Changed to India-themed */}
       <div 
         className="absolute inset-0 z-0 bg-cover bg-center bg-fixed"
