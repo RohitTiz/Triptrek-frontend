@@ -1,9 +1,9 @@
 // data/destinations.js
 export const destinations = [
   {
-    id: 'kakeri-lake',  // id bhi change kar diya
-    name: 'Kakeri Lake',  // YAHAN CHANGE - Kakani se Kakeri
-    image: 'https://images.unsplash.com/photo-1581791534721-e599df4417f7?q=80&w=1331&auto=format&fit=crop',
+    id: 'kakeri-lake',
+    name: 'Kakeri Lake',
+    image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80',
     description: 'Beautiful high-altitude lake nestled in the mountains, perfect for nature lovers and photography enthusiasts.',
     price: 6500,
     duration: '3D/2N',
@@ -14,6 +14,12 @@ export const destinations = [
       'Camping Experience',
       'Bird Watching',
       'Sunrise Views'
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80',
+      'https://images.unsplash.com/photo-1439853949127-fa647821eba0?w=1200&q=80',
+      'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=80',
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80'
     ],
     bestTime: 'March to June, September to November',
     difficulty: 'Easy',
@@ -28,7 +34,7 @@ export const destinations = [
       },
       {
         day: 2,
-        title: 'Kakeri Lake Exploration',  // YAHAN BHI CHANGE
+        title: 'Kakeri Lake Exploration',
         description: 'Full day exploring the lake and surrounding mountain trails'
       },
       {
@@ -41,7 +47,7 @@ export const destinations = [
   {
     id: 'chakrata',
     name: 'Chakrata',
-    image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=1600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80',
     description: 'Offbeat Himalayan hill station with dense forests, panoramic views, and adventure activities.',
     price: 7000,
     duration: '3D/2N',
@@ -52,6 +58,12 @@ export const destinations = [
       'Mountain Biking',
       'Camping',
       'Sunset Point'
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80',
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80',
+      'https://images.unsplash.com/photo-1551632811-561732d1e306?w=1200&q=80'
     ],
     bestTime: 'April to June, September to December',
     difficulty: 'Easy',
@@ -79,7 +91,7 @@ export const destinations = [
   {
     id: 'kedarnath',
     name: 'Kedarnath',
-    image: 'https://images.unsplash.com/photo-1712388430474-ace0c16051e2?q=80&w=1074&auto=format&fit=crop',
+    image: 'https://badrinath-kedarnath.gov.in/Assets/image/k3.jpg',
     description: 'Sacred Himalayan pilgrimage site dedicated to Lord Shiva, known for its ancient temple and stunning mountain views.',
     price: 8000,
     duration: '4D/3N',
@@ -90,6 +102,12 @@ export const destinations = [
       'Mountain Views',
       'Spiritual Experience',
       'Gaurikund'
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1200&q=80',
+      'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1200&q=80',
+      'https://images.unsplash.com/photo-1548013146-72479768bada?w=1200&q=80',
+      'https://images.unsplash.com/photo-1593693399741-6e8ac64b8a3d?w=1200&q=80'
     ],
     bestTime: 'May to October',
     difficulty: 'Moderate',
@@ -122,7 +140,7 @@ export const destinations = [
   {
     id: 'tungnath',
     name: 'Tungnath',
-    image: 'https://images.unsplash.com/photo-1551632811-561732d1e306?q=80&w=1600&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80',
     description: 'Highest Shiva temple in the world, offering breathtaking views of the Himalayas and a memorable trekking experience.',
     price: 6000,
     duration: '4D/3N',
@@ -133,6 +151,12 @@ export const destinations = [
       'Panoramic Himalayan Views',
       'Trekking Adventure',
       'Spiritual Experience'
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=1200&q=80',
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
+      'https://images.unsplash.com/photo-1551632811-561732d1e306?w=1200&q=80',
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80'
     ],
     bestTime: 'May to October',
     difficulty: 'Moderate',
@@ -165,7 +189,7 @@ export const destinations = [
   {
     id: 'yulla-kunda',
     name: 'Yulla Kunda',
-    image: 'https://images.unsplash.com/photo-1581791534721-e599df4417f7?q=80&w=1331&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80',
     description: 'A serene and offbeat Himalayan destination with pristine landscapes, perfect for peace seekers and nature enthusiasts.',
     price: 7000,
     duration: '3D/2N',
@@ -176,6 +200,12 @@ export const destinations = [
       'Local Village Experience',
       'Nature Trails',
       'Camping under Stars'
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1200&q=80',
+      'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1200&q=80',
+      'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1200&q=80',
+      'https://images.unsplash.com/photo-1439853949127-fa647821eba0?w=1200&q=80'
     ],
     bestTime: 'April to October',
     difficulty: 'Easy',
@@ -203,7 +233,7 @@ export const destinations = [
   {
     id: 'char-dham',
     name: 'Char Dham Yatra',
-    image: 'https://images.unsplash.com/photo-1581791534721-e599df4417f7?q=80&w=1331&auto=format&fit=crop',
+    image: 'https://www.chardhamhotels.net/images/chardham-2025.jpg',
     description: 'Sacred pilgrimage circuit of four holy sites - Yamunotri, Gangotri, Kedarnath, and Badrinath in the Himalayas. A spiritual journey of a lifetime.',
     price: 25000,
     duration: '12D/11N',
@@ -215,6 +245,12 @@ export const destinations = [
       'Badrinath Temple',
       'Himalayan Scenery',
       'Spiritual Experience'
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1200&q=80',
+      'https://images.unsplash.com/photo-1548013146-72479768bada?w=1200&q=80',
+      'https://images.unsplash.com/photo-1593693399741-6e8ac64b8a3d?w=1200&q=80',
+      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80'
     ],
     bestTime: 'May to October',
     difficulty: 'Moderate',
