@@ -1,8 +1,8 @@
 // data/destinations.js
 export const destinations = [
   {
-    id: 'kakani-lake',
-    name: 'Kakani Lake',
+    id: 'kakeri-lake',  // id bhi change kar diya
+    name: 'Kakeri Lake',  // YAHAN CHANGE - Kakani se Kakeri
     image: 'https://images.unsplash.com/photo-1581791534721-e599df4417f7?q=80&w=1331&auto=format&fit=crop',
     description: 'Beautiful high-altitude lake nestled in the mountains, perfect for nature lovers and photography enthusiasts.',
     price: 6500,
@@ -28,7 +28,7 @@ export const destinations = [
       },
       {
         day: 2,
-        title: 'Kakani Lake Exploration',
+        title: 'Kakeri Lake Exploration',  // YAHAN BHI CHANGE
         description: 'Full day exploring the lake and surrounding mountain trails'
       },
       {
