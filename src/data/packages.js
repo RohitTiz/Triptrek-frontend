@@ -6,7 +6,7 @@ export const packages = [
     description: 'Complete Char Dham pilgrimage covering Yamunotri, Gangotri, Kedarnath, and Badrinath. A spiritual journey of a lifetime.',
     price: 25000,
     duration: '12D/11N',
-    image: 'https://images.unsplash.com/photo-1581791534721-e599df4417f7?q=80&w=1331&auto=format&fit=crop',
+    image: 'https://www.chardhamhotels.net/images/chardham-2025.jpg',  // MATCHING with destinations.js
     features: [
       'Visit all 4 Dhams',
       'Expert Pilgrim Guide',
@@ -14,6 +14,12 @@ export const packages = [
       'Private Transport',
       'All Permits Included',
       'Daily Meals'
+    ],
+    gallery: [
+      'https://www.chardhamhotels.net/images/chardham-2025.jpg',
+      'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1200&q=80',
+      'https://images.unsplash.com/photo-1548013146-72479768bada?w=1200&q=80',
+      'https://images.unsplash.com/photo-1593693399741-6e8ac64b8a3d?w=1200&q=80'
     ],
     rating: 4.9,
     reviews: 156,
