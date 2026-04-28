@@ -53,35 +53,17 @@ const UnifiedDetail = () => {
     return total * 1.18;
   };
 
-  // Fixed: Handle payment navigation correctly
-  const handleProceedToPayment = () => {
-    if (!item) return;
-    
-    // Calculate final amount
-    let basePrice = item.price;
-    let finalPrice = basePrice * travelers;
-    if (appliedCoupon) {
-      finalPrice = finalPrice - (finalPrice * appliedCoupon.discount / 100);
-    }
-    const totalAmount = finalPrice * 1.18;
-    
-    // For destinations: create a virtual package ID or use destination ID
-    const paymentId = isDestination ? `dest_${item.id}` : item.id;
-    
-    navigate(`/package/${paymentId}/payment`, {
-      state: {
-        packageId: item.id,
-        packageName: item.name,
-        destinationId: isDestination ? item.id : null,
-        basePrice: basePrice,
-        travelers: travelers,
-        selectedDate: selectedDate || new Date().toISOString().split('T')[0],
-        totalAmount: totalAmount,
-        image: item.image,
-        type: isDestination ? 'destination' : 'package',
-        couponApplied: appliedCoupon
-      }
-    });
+  // WhatsApp Message Generator
+  const generateWhatsAppMessage = () => {
+    const itemType = isDestination ? 'Destination' : 'Package';
+    const message = `🏔️ *TripTrek India* 🏔️%0A%0A✨ *${itemType}:* ${item.name}%0A%0A📝 *Details:*%0A${item.description.substring(0, 150)}...%0A%0A💰 *Price:* ${formatPrice(item.price)} per person%0A⏱️ *Duration:* ${item.duration}%0A⭐ *Rating:* ${item.rating}/5%0A%0A📅 *Travel Date:* ${selectedDate || 'Flexible'}%0A👥 *Travelers:* ${travelers} person(s)%0A%0A🎯 *Highlights:*%0A${(item.highlights || item.features || []).slice(0, 4).map(h => `• ${h}`).join('%0A')}%0A%0A💬 *Interested in this trip! Please share more details.*%0A%0A🙏 Thank you! - TripTrek India`;
+    return message;
+  };
+
+  const handleWhatsAppClick = () => {
+    const message = generateWhatsAppMessage();
+    const whatsappUrl = `https://wa.me/917827716233?text=${message}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   const applyCoupon = () => {
@@ -134,7 +116,6 @@ const UnifiedDetail = () => {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
         </div>
-        {/* Yahan padding-top add kiya hai taaki text header se niche aaye */}
         <div className="relative mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16 pt-28 sm:pt-32 lg:pt-36">
           <div className="max-w-4xl">
             <div className="mb-4 flex flex-wrap gap-2 sm:mb-6 sm:gap-3">
@@ -401,13 +382,26 @@ const UnifiedDetail = () => {
                 </div>
 
                 <div className="space-y-2">
+                  {/* WHATSAPP BUTTON - NEW */}
                   <button
+                    onClick={handleWhatsAppClick}
+                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-green-500 to-green-600 py-3 text-sm font-semibold text-white transition-all hover:from-green-600 hover:to-green-700 hover:shadow-lg sm:py-4 sm:text-base"
+                  >
+                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.086 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.55 4.128 1.513 5.874L0 24l6.336-1.657C8.057 23.193 9.99 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.8 0-3.525-.49-5.01-1.342l-.358-.207-3.766.986.998-3.66-.217-.36C3.423 15.635 2.8 13.874 2.8 12c0-5.07 4.13-9.2 9.2-9.2s9.2 4.13 9.2 9.2-4.13 9.2-9.2 9.2z"/>
+                    </svg>
+                    <span>Book via WhatsApp</span>
+                  </button>
+
+                  {/* PROCEED TO PAYMENT BUTTON - COMMENTED OUT */}
+                  {/* <button
                     onClick={handleProceedToPayment}
                     className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 py-3 text-sm font-semibold text-white transition-all hover:from-blue-700 hover:to-purple-700 hover:shadow-lg sm:py-4 sm:text-base"
                   >
                     <CreditCard className="h-4 w-4 sm:h-5 sm:w-5" />
                     <span>Proceed to Payment</span>
-                  </button>
+                  </button> */}
 
                   {/* Enquiry Button */}
                   <button
