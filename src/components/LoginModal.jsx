@@ -126,7 +126,7 @@ const LoginModal = ({ isOpen, onClose }) => {
             </div>
             <div>
               <h2 className="text-sm font-bold text-gray-900 sm:text-base">
-                {isLogin ? 'Welcome Back' : 'Join Trip.trekindia'}
+                {isLogin ? 'Welcome Back' : 'Join Trip Trek India'}
               </h2>
               <p className="text-xs text-gray-500">
                 {isLogin ? 'Sign in to continue' : 'Create your account'}

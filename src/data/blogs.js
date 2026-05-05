@@ -1,188 +1,314 @@
-const blogs = [
+// src/data/blogs.js
+export const blogs = [
   {
     id: 1,
-    title: "Top 10 Must-Visit Places in Rajasthan",
-    excerpt: "Discover the royal heritage, majestic forts, and vibrant culture of Rajasthan, India's land of kings.",
-    content: `Rajasthan, the land of kings, is a treasure trove of architectural marvels, vibrant culture, and rich history. From the golden sands of the Thar Desert to the majestic palaces of Jaipur, Rajasthan offers an unforgettable experience for every traveler.
+    title: "Complete Guide to Char Dham Yatra 2024",
+    excerpt: "Everything you need to know about the sacred pilgrimage to Yamunotri, Gangotri, Kedarnath, and Badrinath.",
+    content: `The Char Dham Yatra is one of the most sacred pilgrimages in Hinduism, visiting four holy sites nestled in the Himalayas.
 
-    ## Key Attractions:
-    1. **Jaipur - The Pink City**: Visit the iconic Hawa Mahal, Amer Fort, and City Palace
-    2. **Udaipur - City of Lakes**: Enjoy boat rides on Lake Pichola and visit the magnificent City Palace
-    3. **Jodhpur - The Blue City**: Explore Mehrangarh Fort and the blue-painted houses
-    4. **Jaisalmer - The Golden City**: Experience desert camping and visit the golden fort
-    5. **Pushkar**: Witness the famous camel fair and the sacred Pushkar Lake
+## Best Time to Visit
+The Char Dham Yatra typically begins in April-May and continues until October-November. The best time is May-June and September-October when the weather is pleasant.
 
-    ## Travel Tips:
-    - Best time to visit: October to March
-    - Try local cuisine: Dal Baati Churma, Laal Maas, Ghewar
-    - Don't miss: Traditional folk dances and puppet shows`,
-    author: "Rahul Sharma",
-    date: "2024-02-15",
+## Important Tips:
+- **Health Checkup**: Due to high altitude, get a health checkup before going
+- **Packing Essentials**: Warm clothes, raincoat, trekking shoes, medicines
+- **Permits**: Get your yatra permits online or at registration centers
+- **Accommodation**: Book in advance during peak season
+
+## Getting There
+The closest airport is Jolly Grant Airport in Dehradun. From there, you can hire taxis or take buses to the starting points.
+
+## What to Carry
+- Warm clothing and thermal wear
+- Raincoat and umbrella
+- Trekking shoes
+- First aid kit and personal medicines
+- Energy bars and dry fruits
+- Water bottle`,
+    author: "Priya Sharma",
+    date: "2024-03-15",
     readTime: "8 min read",
     category: "Destinations",
-    tags: ["Rajasthan", "Heritage", "Culture", "Travel Guide"],
-    image: "https://images.unsplash.com/photo-1524307875964-4c93f5b4a1c5?auto=format&fit=crop&w=800",
-    featured: true,
-    slug: "top-10-must-visit-places-in-rajasthan"
+    tags: ["Char Dham", "Pilgrimage", "Uttarakhand", "Travel Guide"],
+    image: "https://images.unsplash.com/photo-1587474260584-136574528ed5?w=800&h=600&fit=crop",
+    featured: false,
+    slug: "complete-guide-to-char-dham-yatra"
   },
   {
     id: 2,
-    title: "Complete Guide to Indian Visa for Tourists",
-    excerpt: "Everything you need to know about getting an Indian visa, requirements, and the application process.",
-    content: `Planning a trip to India? Our comprehensive guide covers all aspects of obtaining an Indian tourist visa.
+    title: "Kedarnath Temple: A Spiritual Journey",
+    excerpt: "Discover the mystical charm of Kedarnath Temple, nestled at 3,583 meters in the Garhwal Himalayas.",
+    content: `Kedarnath Temple, dedicated to Lord Shiva, is one of the 12 Jyotirlingas of India. Located at an altitude of 3,583 meters, it's a testament to faith and resilience.
 
-    ## Visa Types:
-    1. **e-Tourist Visa (eTV)**: For tourists from eligible countries
-    2. **Tourist Visa**: Regular tourist visa from Indian missions
-    3. **Business Visa**: For business-related travel
-    4. **Medical Visa**: For medical treatment in India
+## History & Significance
+The temple was built by Adi Shankaracharya in the 8th century. According to legend, after the Kurukshetra war, the Pandavas sought Lord Shiva's blessings here.
 
-    ## Requirements:
-    - Valid passport with 6 months validity
-    - Recent passport-size photographs
-    - Proof of accommodation
-    - Return flight tickets
-    - Financial proof
+## How to Reach
+- **By Air**: Jolly Grant Airport, Dehradun (239 km)
+- **By Rail**: Rishikesh Railway Station (216 km)
+- **By Road**: Regular buses and taxis from Rishikesh to Gaurikund, then 16 km trek
 
-    ## Application Process:
-    1. Complete online application
-    2. Upload required documents
-    3. Pay visa fee
-    4. Receive e-visa via email`,
-    author: "Priya Patel",
-    date: "2024-02-10",
+## Trek Details
+- **Distance**: 16 km from Gaurikund
+- **Duration**: 6-8 hours
+- **Difficulty**: Moderate
+- **Altitude**: 3,583 meters
+
+## Where to Stay
+- GMVN Guest Houses
+- Private hotels and lodges
+- Ashrams and dharamshalas`,
+    author: "Rahul Verma",
+    date: "2024-03-10",
     readTime: "6 min read",
-    category: "Travel Tips",
-    tags: ["Visa", "Documentation", "Travel Tips", "India"],
-    image: "https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=800",
+    category: "Destinations",
+    tags: ["Kedarnath", "Temple", "Pilgrimage", "Himalayas"],
+    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&h=600&fit=crop",
     featured: true,
-    slug: "complete-guide-to-indian-visa-for-tourists"
+    slug: "kedarnath-temple-spiritual-journey"
   },
   {
     id: 3,
-    title: "Best Time to Visit the Himalayas",
-    excerpt: "Discover the perfect seasons for trekking, sightseeing, and adventure in the majestic Himalayas.",
-    content: `The Himalayas offer different experiences throughout the year. Here's a seasonal guide:
+    title: "Best Trekking Destinations in Uttarakhand",
+    excerpt: "Explore the most beautiful trekking routes in the Himalayas, from easy walks to challenging expeditions.",
+    content: `Uttarakhand, known as 'Devbhumi', offers some of the most spectacular trekking experiences in the world.
 
-    ## Spring (March-May):
-    - Pleasant weather
-    - Blooming rhododendrons
-    - Ideal for trekking
+## Top Treks:
 
-    ## Summer (June-August):
-    - Monsoon season
-    - Lush green landscapes
-    - Lower tourist crowds
+### 1. Valley of Flowers Trek
+- **Duration**: 6-7 days
+- **Difficulty**: Easy to Moderate
+- **Best Season**: July-September
+- **Altitude**: 3,658 meters
 
-    ## Autumn (September-November):
-    - Best time for trekking
-    - Clear mountain views
-    - Festival season
+### 2. Har Ki Dun Trek
+- **Duration**: 7-8 days
+- **Difficulty**: Easy to Moderate
+- **Best Season**: March-June, September-November
+- **Altitude**: 3,566 meters
 
-    ## Winter (December-February):
-    - Snow-covered peaks
-    - Skiing opportunities
-    - Cold but beautiful`,
-    author: "Anil Kumar",
-    date: "2024-02-05",
-    readTime: "5 min read",
+### 3. Kedarnath Trek
+- **Duration**: 5-6 days
+- **Difficulty**: Moderate
+- **Best Season**: May-October
+- **Altitude**: 3,583 meters
+
+## Essential Tips:
+- Acclimatize properly to avoid altitude sickness
+- Carry proper trekking gear
+- Hire experienced local guides
+- Start early morning for better weather`,
+    author: "Amit Negi",
+    date: "2024-03-05",
+    readTime: "7 min read",
     category: "Adventure",
-    tags: ["Himalayas", "Trekking", "Mountains", "Adventure"],
-    image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800",
+    tags: ["Trekking", "Himalayas", "Uttarakhand", "Adventure"],
+    image: "https://images.unsplash.com/photo-1551632811-561732d1e306?w=800&h=600&fit=crop",
     featured: false,
-    slug: "best-time-to-visit-the-himalayas"
+    slug: "best-trekking-destinations-in-uttarakhand"
   },
   {
     id: 4,
-    title: "Indian Street Food You Must Try",
-    excerpt: "From spicy chaat to sweet jalebi, explore the delicious world of Indian street food.",
-    content: `Indian street food is a culinary adventure. Here are must-try dishes:
+    title: "Essential Travel Tips for First-Time Visitors to India",
+    excerpt: "Planning your first trip to India? Here's everything you need to know for a smooth and memorable journey.",
+    content: `India is a beautiful country with diverse cultures, languages, and landscapes. Here are essential tips for first-time visitors.
 
-    ## North Indian Delights:
-    - **Chaat**: Tangy and spicy snacks
-    - **Golgappe/Pani Puri**: Crisp puris with flavored water
-    - **Chole Bhature**: Spicy chickpeas with fried bread
+## Visa Requirements
+Most nationalities require a visa to enter India. Apply for an e-Visa online at least 4-7 days before your trip.
 
-    ## South Indian Specials:
-    - **Masala Dosa**: Crispy rice crepe with potato filling
-    - **Idli Sambar**: Steamed rice cakes with lentil stew
-    - **Vada**: Savory lentil donuts
+## Best Time to Visit
+- **October to March**: Best for most regions
+- **April to June**: Hot in plains, good for mountains
+- **July to September**: Monsoon season, great for lush greenery
 
-    ## Sweets:
-    - **Jalebi**: Deep-fried sweet pretzels
-    - **Rasgulla**: Soft cottage cheese balls in syrup
-    - **Gulab Jamun**: Deep-fried milk solids in sugar syrup`,
-    author: "Sneha Verma",
-    date: "2024-01-28",
-    readTime: "7 min read",
-    category: "Food",
-    tags: ["Street Food", "Indian Cuisine", "Food Tour", "Culture"],
-    image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800",
+## Transportation Tips
+- Download Ola/Uber for city travel
+- Use IRCTC for train bookings
+- Domestic flights are affordable and convenient
+- Prepaid taxis at airports
+
+## Food & Water Safety
+- Drink only bottled water
+- Eat at reputable restaurants
+- Try street food from busy stalls
+- Carry basic medicines
+
+## Cultural Etiquette
+- Remove shoes before entering temples
+- Dress modestly at religious sites
+- Ask before taking photos of people
+- Learn basic Hindi phrases (Namaste, Shukriya)`,
+    author: "Sarah Johnson",
+    date: "2024-02-28",
+    readTime: "10 min read",
+    category: "Travel Tips",
+    tags: ["Travel Tips", "India Guide", "First Time", "Planning"],
+    image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&h=600&fit=crop",
     featured: true,
-    slug: "indian-street-food-you-must-try"
+    slug: "essential-travel-tips-for-first-time-visitors-to-india"
   },
   {
     id: 5,
-    title: "Yoga Retreats in Rishikesh: A Spiritual Journey",
-    excerpt: "Experience the birthplace of yoga through authentic retreats in the spiritual capital of India.",
-    content: `Rishikesh, nestled in the foothills of the Himalayas, is the yoga capital of the world.
+    title: "Top 10 Indian Festivals You Must Experience",
+    excerpt: "From Diwali to Holi, discover the vibrant festivals that make India truly incredible.",
+    content: `India's festivals are a celebration of life, culture, and spirituality. Here are the top 10 festivals you must experience.
 
-    ## Best Yoga Retreats:
-    1. **Parmarth Niketan**: Daily yoga and meditation sessions
-    2. **Sivananda Ashram**: Traditional yoga teachings
-    3. **Ananda in the Himalayas**: Luxury wellness retreat
+## Diwali (October-November)
+The festival of lights is India's biggest celebration. Witness cities lit up with diyas and spectacular fireworks.
 
-    ## What to Expect:
-    - Morning and evening yoga sessions
-    - Meditation and breathing exercises
-    - Vegetarian meals
-    - Spiritual discourses
-    - Ganga Aarti experience
+## Holi (March)
+The festival of colors where people play with colored powder and water. Best experienced in North India.
 
-    ## Duration Options:
-    - Weekend retreats (2-3 days)
-    - Week-long programs (7 days)
-    - Month-long intensive courses`,
-    author: "Dr. Arjun Mehta",
-    date: "2024-01-20",
-    readTime: "6 min read",
-    category: "Wellness",
-    tags: ["Yoga", "Meditation", "Spiritual", "Rishikesh", "Wellness"],
-    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800",
+## Durga Puja (September-October)
+West Bengal's biggest festival featuring elaborate pandals and idol immersions.
+
+## Ganesh Chaturthi (August-September)
+Maharashtra's grand celebration of Lord Ganesha with huge idols and processions.
+
+## Navratri & Dussehra (September-October)
+Nine nights of dancing (Garba/Dandiya) followed by burning of Ravana effigies.
+
+## Pushkar Camel Fair (November)
+A unique fair in Rajasthan featuring camel races, cultural performances, and trading.
+
+## Where to Experience:
+- Diwali: Jaipur, Varanasi, Amritsar
+- Holi: Mathura, Vrindavan, Jaipur
+- Durga Puja: Kolkata
+- Ganesh Chaturthi: Mumbai, Pune`,
+    author: "Nikita Patel",
+    date: "2024-02-20",
+    readTime: "9 min read",
+    category: "Culture",
+    tags: ["Festivals", "Culture", "Diwali", "Holi", "Events"],
+    image: "https://images.unsplash.com/photo-1548013146-72479768bada?w=800&h=600&fit=crop",
     featured: false,
-    slug: "yoga-retreats-in-rishikesh-spiritual-journey"
+    slug: "top-10-indian-festivals-you-must-experience"
   },
   {
     id: 6,
-    title: "Wildlife Safari in Indian National Parks",
-    excerpt: "Spot tigers, elephants, and exotic birds in India's best wildlife sanctuaries and national parks.",
-    content: `India boasts incredible biodiversity with numerous national parks and wildlife sanctuaries.
+    title: "Rishikesh: The Yoga Capital of the World",
+    excerpt: "Experience spiritual awakening and adventure in the serene town of Rishikesh, nestled in the Himalayas.",
+    content: `Rishikesh, situated on the banks of the Ganges, is a perfect blend of spirituality and adventure.
 
-    ## Top National Parks:
-    1. **Ranthambore National Park**: Famous for tiger sightings
-    2. **Jim Corbett National Park**: Oldest national park in India
-    3. **Kanha National Park**: Inspiration for The Jungle Book
-    4. **Kaziranga National Park**: Home to one-horned rhinos
-    5. **Periyar National Park**: Elephant paradise in Kerala
+## Best Time to Visit
+- **February-April**: Pleasant weather
+- **September-November**: Post-monsoon clarity
 
-    ## Safari Tips:
-    - Book safaris in advance
-    - Early morning safaris are best for wildlife spotting
-    - Follow park rules and regulations
-    - Hire experienced guides
-    - Carry binoculars and cameras
+## Top Attractions
+- **Lakshman Jhula & Ram Jhula**: Iconic suspension bridges
+- **Triveni Ghat**: Evening Ganga Aarti
+- **Beatles Ashram**: Where the Beatles studied meditation
+- **Neer Garh Waterfall**: A beautiful trek
 
-    ## Best Time to Visit:
-    - Winter months (November to February)
-    - Early mornings and late afternoons for animal activity`,
-    author: "Rajesh Wildlife",
-    date: "2024-01-15",
+## Yoga & Meditation
+- Parmarth Niketan
+- Sivananda Ashram
+- Omkarananda Ganga Sadan
+
+## Adventure Activities
+- River Rafting (Grade I-IV rapids)
+- Bungee Jumping
+- Flying Fox
+- Mountain Biking
+
+## Where to Stay
+- Luxury: Ananda in the Himalayas
+- Mid-range: Aloha on the Ganges
+- Budget: Zostel, GoStops`,
+    author: "Dr. Meera Joshi",
+    date: "2024-02-15",
+    readTime: "7 min read",
+    category: "Wellness",
+    tags: ["Rishikesh", "Yoga", "Meditation", "Ganga", "Adventure"],
+    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&h=600&fit=crop",
+    featured: false,
+    slug: "rishikesh-yoga-capital-of-the-world"
+  },
+  {
+    id: 7,
+    title: "Wildlife Safari Guide: Jim Corbett National Park",
+    excerpt: "Plan your tiger safari in India's oldest national park with our comprehensive guide.",
+    content: `Jim Corbett National Park, established in 1936, is a premier wildlife destination in India.
+
+## Best Time to Visit
+- **November to June**: Park open for safaris
+- **December-January**: Best for tiger sightings
+
+## Safari Zones
+- **Dhikala Zone**: Best for tiger sightings
+- **Bijrani Zone**: Good for elephants and deer
+- **Jhirna Zone**: Open all year
+- **Durga Devi Zone**: Known for birds
+
+## Safari Timings
+- Morning: 6:00 AM - 9:00 AM
+- Evening: 2:30 PM - 5:30 PM
+
+## Wildlife You Can Spot
+- Bengal Tiger
+- Asian Elephant
+- Leopard
+- Crocodile
+- Over 600 bird species
+
+## Booking Tips
+- Book online at corbettonline.uk.gov.in
+- Book at least 45 days in advance
+- Jeep safaris are better than canter for photography
+- Hire an experienced naturalist guide`,
+    author: "Rajesh Chauhan",
+    date: "2024-02-10",
     readTime: "8 min read",
     category: "Wildlife",
-    tags: ["Wildlife", "Safari", "National Parks", "Tiger", "Nature"],
-    image: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?auto=format&fit=crop&w=800",
+    tags: ["Wildlife", "Safari", "Tiger", "Jim Corbett", "Nature"],
+    image: "https://images.unsplash.com/photo-1546182990-dffeafbe841d?w=800&h=600&fit=crop",
     featured: true,
-    slug: "wildlife-safari-in-indian-national-parks"
+    slug: "wildlife-safari-guide-jim-corbett-national-park"
+  },
+  {
+    id: 8,
+    title: "Delhi to Manali Road Trip: Complete Guide",
+    excerpt: "Everything you need to know about the scenic road trip from Delhi to the beautiful hill station of Manali.",
+    content: `The Delhi to Manali road trip is one of the most scenic drives in India, passing through pine forests, rivers, and mountains.
+
+## Route Options
+- **Via Chandigarh**: Delhi - Chandigarh - Mandi - Manali (550 km, 12-14 hours)
+- **Via Shimla**: Delhi - Shimla - Manali (570 km, 14-16 hours)
+
+## Best Time to Drive
+- **April-June**: Pleasant weather
+- **September-November**: Clear skies
+- **December-February**: Snow experience
+
+## Stopover Options
+- Murthal: Famous parathas
+- Chandigarh: Overnight stay
+- Mandi: Lunch break by the river
+
+## Road Conditions
+- Excellent roads till Chandigarh
+- Good roads till Mandi
+- Winding roads from Mandi to Manali
+
+## Vehicle Tips
+- Get your car serviced before the trip
+- Carry a spare tire and toolkit
+- Fill fuel at major cities only
+- Start early to avoid night driving
+
+## Attractions on the Way
+- Kullu Valley
+- River Rafting at Kullu
+- Vaishno Devi Temple, Kullu`,
+    author: "Vikram Singh",
+    date: "2024-02-05",
+    readTime: "9 min read",
+    category: "Travel Tips",
+    tags: ["Road Trip", "Manali", "Delhi", "Himachal", "Travel Guide"],
+    image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800&h=600&fit=crop",
+    featured: false,
+    slug: "delhi-to-manali-road-trip-complete-guide"
   }
 ];
 

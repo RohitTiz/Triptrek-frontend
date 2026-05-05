@@ -61,7 +61,7 @@ const Hero = () => {
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm sm:gap-3 sm:px-6 sm:py-3">
               <Globe className="h-4 w-4 text-saffron-300 sm:h-5 sm:w-5 lg:h-6 lg:w-6" />
               <MapPin className="h-3 w-3 text-green-300 sm:h-4 sm:w-4" />
-              <span className="text-base font-bold sm:text-lg">trip.trekindia</span>
+              <span className="text-base font-bold sm:text-lg">Trip Trek India</span>
               <span className="text-xs text-gray-300 sm:text-sm">• Delhi Based</span>
             </div>
           </div>
