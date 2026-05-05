@@ -216,7 +216,7 @@ const Header = () => {
                           ? 'text-gray-900' 
                           : 'text-green-700'
                       }`}>
-                        trip.trekindia
+                        Trip Trek Indiaaa
                       </span>
                     </div>
                     <span className={`text-[10px] font-medium sm:text-xs ${
