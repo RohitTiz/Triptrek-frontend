@@ -12,15 +12,15 @@ const BlogPostPage = () => {
 
   if (!blog) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-gray-50 pt-24">
+      <div className="flex min-h-screen items-center justify-center bg-gray-50">
         <div className="text-center">
-          <h1 className="mb-4 text-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">Blog Not Found</h1>
-          <p className="mb-6 text-gray-600 sm:mb-8">The blog post you're looking for doesn't exist.</p>
+          <h1 className="mb-4 text-2xl font-bold text-gray-900">Blog Not Found</h1>
+          <p className="mb-6 text-gray-600">The blog post you're looking for doesn't exist.</p>
           <Link 
             to="/blogs" 
-            className="inline-flex items-center font-medium text-saffron-600 hover:text-saffron-700"
+            className="inline-flex items-center rounded-full bg-gradient-to-r from-saffron-500 to-orange-600 px-6 py-2 text-white transition-all hover:shadow-lg"
           >
-            <ArrowLeft className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+            <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Blogs
           </Link>
         </div>
@@ -29,37 +29,57 @@ const BlogPostPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20 sm:pt-24">
-      {/* Hero Image */}
-      <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[21/9]">
+    <div className="min-h-screen bg-gray-50">
+      
+      {/* Hero Section - IMPROVED VISIBILITY */}
+      <div className="relative h-[60vh] min-h-[500px] overflow-hidden">
         <img 
           src={blog.image} 
           alt={blog.title}
           className="h-full w-full object-cover"
+          onError={(e) => {
+            e.target.src = 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=1200&h=600&fit=crop';
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-        <div className="absolute inset-x-0 bottom-0 px-4 pb-6 sm:px-6 sm:pb-8 lg:px-8 lg:pb-12">
-          <div className="mx-auto max-w-4xl">
+        {/* Darker Overlay for Better Text Visibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-black/30"></div>
+        
+        <div className="absolute bottom-0 left-0 right-0 p-6 text-white sm:p-8 lg:p-12">
+          <div className="mx-auto max-w-5xl">
             <Link 
               to="/blogs" 
-              className="mb-3 inline-flex items-center text-white/90 hover:text-white sm:mb-4"
+              className="mb-4 inline-flex items-center text-sm text-white/80 hover:text-white transition-colors sm:mb-5"
             >
-              <ArrowLeft className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+              <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Blogs
             </Link>
-            <h1 className="mb-3 text-2xl font-bold text-white sm:text-3xl lg:text-4xl xl:text-5xl">{blog.title}</h1>
-            <div className="flex flex-wrap items-center gap-3 text-white/90 sm:gap-4">
-              <div className="flex items-center">
-                <User className="mr-1.5 h-4 w-4 sm:mr-2 sm:h-5 sm:w-5" />
-                <span className="text-sm sm:text-base">{blog.author}</span>
+            
+            {/* Category Badge */}
+            <div className="mb-3">
+              <span className="rounded-full bg-gradient-to-r from-saffron-500 to-orange-600 px-3 py-1 text-xs font-medium text-white shadow-lg">
+                {blog.category}
+              </span>
+            </div>
+            
+            <h1 className="mb-4 text-2xl font-bold leading-tight drop-shadow-lg sm:text-3xl lg:text-4xl xl:text-5xl">
+              {blog.title}
+            </h1>
+            
+            <div className="flex flex-wrap items-center gap-4 text-sm text-white/90 sm:text-base">
+              <div className="flex items-center gap-1.5">
+                <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/20">
+                  <User className="h-3 w-3" />
+                </div>
+                <span>{blog.author}</span>
               </div>
-              <div className="flex items-center">
-                <Calendar className="mr-1.5 h-4 w-4 sm:mr-2 sm:h-5 sm:w-5" />
-                <span className="text-sm sm:text-base">{blog.date}</span>
+              <div className="flex items-center gap-1.5">
+                <Calendar className="h-4 w-4" />
+                <span>{blog.date}</span>
               </div>
-              <div className="flex items-center">
-                <Clock className="mr-1.5 h-4 w-4 sm:mr-2 sm:h-5 sm:w-5" />
-                <span className="text-sm sm:text-base">{blog.readTime}</span>
+              <div className="flex items-center gap-1.5">
+                <Clock className="h-4 w-4" />
+                <span>{blog.readTime}</span>
               </div>
             </div>
           </div>
@@ -67,172 +87,215 @@ const BlogPostPage = () => {
       </div>
 
       {/* Main Content */}
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-12">
-        <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col gap-6 lg:flex-row lg:gap-8 xl:gap-12">
-            {/* Article Content */}
-            <article className="lg:w-2/3">
-              <div className="mb-6 rounded-2xl bg-white p-4 shadow-sm sm:mb-8 sm:p-6 lg:p-8">
-                {/* Tags */}
-                <div className="mb-6 flex flex-wrap items-center gap-1.5 sm:mb-8 sm:gap-2">
-                  <Tag className="h-4 w-4 text-gray-400 sm:h-5 sm:w-5" />
-                  {blog.tags.map(tag => (
-                    <span key={tag} className="rounded-full bg-gray-100 px-2.5 py-1 text-xs text-gray-700 sm:px-3 sm:text-sm">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
+        <div className="flex flex-col gap-8 lg:flex-row lg:gap-12">
+          
+          {/* Left Column - Article Content */}
+          <article className="lg:w-2/3">
+            <div className="rounded-2xl bg-white p-6 shadow-lg sm:p-8 lg:p-10">
+              
+              {/* Tags */}
+              <div className="mb-6 flex flex-wrap gap-2 border-b border-gray-100 pb-6">
+                <Tag className="h-4 w-4 text-gray-400 mt-0.5" />
+                {blog.tags.map(tag => (
+                  <span key={tag} className="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700">
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
-                {/* Content */}
-                <div className="prose prose-sm max-w-none sm:prose-base lg:prose-lg">
-                  <div className="leading-relaxed text-gray-700">
-                    {blog.content.split('\n\n').map((paragraph, index) => (
-                      <div key={index} className="mb-4 sm:mb-6">
-                        {paragraph.startsWith('## ') ? (
-                          <h2 className="mb-3 text-xl font-bold text-gray-900 sm:mb-4 sm:text-2xl">
-                            {paragraph.substring(3)}
-                          </h2>
-                        ) : paragraph.startsWith('1. ') || paragraph.startsWith('- ') ? (
-                          <ul className="mb-4 list-disc space-y-1.5 pl-5 sm:mb-6 sm:space-y-2">
-                            {paragraph.split('\n').map((item, i) => (
-                              <li key={i} className="text-gray-700">
-                                {item.replace(/^[0-9]+\.\s*|^-\s*/, '')}
-                              </li>
-                            ))}
-                          </ul>
-                        ) : (
-                          paragraph
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </div>
+              {/* Content - IMPROVED TYPOGRAPHY */}
+              <div className="prose prose-base max-w-none lg:prose-lg">
+                {blog.content.split('\n\n').map((paragraph, index) => {
+                  if (paragraph.startsWith('## ')) {
+                    return (
+                      <h2 key={index} className="mt-8 text-xl font-bold text-gray-900 first:mt-0 sm:text-2xl">
+                        {paragraph.substring(3)}
+                      </h2>
+                    );
+                  } else if (paragraph.match(/^[0-9]+\./)) {
+                    const items = paragraph.split('\n');
+                    return (
+                      <ul key={index} className="my-4 list-decimal space-y-2 pl-5">
+                        {items.map((item, i) => (
+                          <li key={i} className="text-gray-700">
+                            {item.replace(/^[0-9]+\.\s*/, '')}
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                  } else if (paragraph.startsWith('- ')) {
+                    const items = paragraph.split('\n');
+                    return (
+                      <ul key={index} className="my-4 list-disc space-y-2 pl-5">
+                        {items.map((item, i) => (
+                          <li key={i} className="text-gray-700">
+                            {item.replace(/^-\s*/, '')}
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                  } else if (paragraph.startsWith('**')) {
+                    return (
+                      <p key={index} className="my-4 font-semibold text-gray-800">
+                        {paragraph}
+                      </p>
+                    );
+                  } else {
+                    return (
+                      <p key={index} className="my-4 leading-relaxed text-gray-700">
+                        {paragraph}
+                      </p>
+                    );
+                  }
+                })}
+              </div>
 
-                {/* Action Buttons */}
-                <div className="mt-8 border-t border-gray-200 pt-6 sm:mt-10 sm:pt-8">
-                  <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center sm:gap-6">
-                    <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-                      <button className="flex items-center text-sm text-gray-600 hover:text-saffron-600 sm:text-base">
-                        <Bookmark className="mr-1.5 h-4 w-4 sm:mr-2 sm:h-5 sm:w-5" />
-                        Save
+              {/* Share & Save Actions */}
+              <div className="mt-8 border-t border-gray-100 pt-6">
+                <div className="flex flex-wrap items-center justify-between gap-4">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm text-gray-500">Share this article:</span>
+                    <div className="flex gap-2">
+                      <button className="rounded-full bg-gray-100 p-2 text-blue-600 transition-all hover:bg-blue-600 hover:text-white">
+                        <Facebook className="h-4 w-4" />
                       </button>
-                      <div className="flex items-center gap-2 sm:gap-3">
-                        <span className="text-sm text-gray-600 sm:text-base">Share:</span>
-                        <button className="text-blue-600 hover:text-blue-700">
-                          <Facebook className="h-4 w-4 sm:h-5 sm:w-5" />
-                        </button>
-                        <button className="text-blue-400 hover:text-blue-500">
-                          <Twitter className="h-4 w-4 sm:h-5 sm:w-5" />
-                        </button>
-                        <button className="text-blue-700 hover:text-blue-800">
-                          <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
-                        </button>
-                        <button className="text-gray-600 hover:text-saffron-600">
-                          <Share2 className="h-4 w-4 sm:h-5 sm:w-5" />
-                        </button>
-                      </div>
+                      <button className="rounded-full bg-gray-100 p-2 text-sky-500 transition-all hover:bg-sky-500 hover:text-white">
+                        <Twitter className="h-4 w-4" />
+                      </button>
+                      <button className="rounded-full bg-gray-100 p-2 text-blue-700 transition-all hover:bg-blue-700 hover:text-white">
+                        <Linkedin className="h-4 w-4" />
+                      </button>
+                      <button className="rounded-full bg-gray-100 p-2 text-gray-600 transition-all hover:bg-saffron-500 hover:text-white">
+                        <Share2 className="h-4 w-4" />
+                      </button>
                     </div>
+                  </div>
+                  <button className="flex items-center gap-1.5 text-sm text-gray-500 transition-colors hover:text-saffron-600">
+                    <Bookmark className="h-4 w-4" />
+                    Save for later
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Author Bio */}
+            <div className="mt-6 rounded-2xl bg-gradient-to-r from-saffron-50 to-orange-50 p-6 shadow-md sm:p-8">
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
+                <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-saffron-500 to-orange-600 shadow-lg">
+                  <User className="h-8 w-8 text-white" />
+                </div>
+                <div className="flex-1 text-center sm:text-left">
+                  <h3 className="mb-1 text-xl font-bold text-gray-900">{blog.author}</h3>
+                  <p className="mb-2 text-sm text-gray-600">
+                    Travel writer and photographer with over 10 years of experience exploring India. 
+                    Passionate about sharing authentic travel experiences and cultural insights.
+                  </p>
+                  <div className="flex flex-wrap justify-center gap-3 text-xs text-gray-500 sm:justify-start">
+                    <span className="rounded-full bg-white px-2 py-0.5 font-medium text-saffron-600">
+                      {blog.category} Specialist
+                    </span>
+                    <span className="rounded-full bg-white px-2 py-0.5 font-medium text-saffron-600">
+                      50+ Articles Published
+                    </span>
                   </div>
                 </div>
               </div>
+            </div>
+          </article>
 
-              {/* Author Bio */}
-              <div className="rounded-2xl bg-white p-4 shadow-sm sm:p-6 lg:p-8">
-                <div className="flex items-start gap-4 sm:gap-6">
-                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-saffron-100 sm:h-16 sm:w-16">
-                    <User className="h-6 w-6 text-saffron-600 sm:h-8 sm:w-8" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="mb-1 text-lg font-bold text-gray-900 sm:mb-2 sm:text-xl">{blog.author}</h3>
-                    <p className="mb-3 text-sm text-gray-600 sm:mb-4 sm:text-base">
-                      Travel writer and photographer with over 10 years of experience exploring India. 
-                      Passionate about sharing authentic travel experiences and cultural insights.
-                    </p>
-                    <div className="text-xs text-gray-500 sm:text-sm">
-                      <span className="font-medium">{blog.category} Specialist</span>
-                      <span className="mx-1.5 sm:mx-2">•</span>
-                      <span>50+ Articles Published</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            {/* Sidebar */}
-            <aside className="lg:w-1/3">
-              {/* Related Articles */}
-              {relatedBlogs.length > 0 && (
-                <div className="mb-6 rounded-2xl bg-white p-4 shadow-sm sm:mb-8 sm:p-6">
-                  <h3 className="mb-3 text-lg font-bold text-gray-900 sm:mb-4 sm:text-xl">Related Articles</h3>
-                  <div className="space-y-3 sm:space-y-4">
-                    {relatedBlogs.map(relatedBlog => (
-                      <Link 
-                        key={relatedBlog.id}
-                        to={`/blogs/${relatedBlog.slug}`}
-                        className="group block"
-                      >
-                        <div className="flex items-start gap-3 sm:gap-4">
-                          <div className="h-14 w-16 flex-shrink-0 overflow-hidden rounded-lg sm:h-16 sm:w-20">
-                            <img 
-                              src={relatedBlog.image} 
-                              alt={relatedBlog.title}
-                              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
-                            />
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="line-clamp-2 text-sm font-medium text-gray-900 transition-colors group-hover:text-saffron-600 sm:text-base">
-                              {relatedBlog.title}
-                            </h4>
-                            <div className="mt-1 flex items-center text-xs text-gray-500 sm:text-sm">
-                              <Clock className="mr-1 h-3 w-3" />
-                              <span>{relatedBlog.readTime}</span>
-                            </div>
+          {/* Right Column - Sidebar */}
+          <aside className="lg:w-1/3">
+            
+            {/* Related Articles */}
+            {relatedBlogs.length > 0 && (
+              <div className="mb-6 rounded-2xl bg-white p-5 shadow-lg sm:p-6">
+                <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-gray-900">
+                  <span className="h-1 w-6 rounded-full bg-gradient-to-r from-saffron-500 to-orange-600"></span>
+                  Related Articles
+                </h3>
+                <div className="space-y-4">
+                  {relatedBlogs.map(relatedBlog => (
+                    <Link 
+                      key={relatedBlog.id}
+                      to={`/blogs/${relatedBlog.slug}`}
+                      className="group block"
+                    >
+                      <div className="flex gap-3 rounded-xl transition-all group-hover:bg-gray-50">
+                        <div className="h-16 w-20 flex-shrink-0 overflow-hidden rounded-lg">
+                          <img 
+                            src={relatedBlog.image} 
+                            alt={relatedBlog.title}
+                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                          />
+                        </div>
+                        <div className="flex-1">
+                          <h4 className="line-clamp-2 text-sm font-semibold text-gray-900 transition-colors group-hover:text-saffron-600">
+                            {relatedBlog.title}
+                          </h4>
+                          <div className="mt-1 flex items-center gap-2 text-xs text-gray-500">
+                            <Clock className="h-3 w-3" />
+                            <span>{relatedBlog.readTime}</span>
+                            <span>•</span>
+                            <span>{relatedBlog.date}</span>
                           </div>
                         </div>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-
-              {/* Categories */}
-              <div className="mb-6 rounded-2xl bg-white p-4 shadow-sm sm:mb-8 sm:p-6">
-                <h3 className="mb-3 text-lg font-bold text-gray-900 sm:mb-4 sm:text-xl">Categories</h3>
-                <div className="space-y-1.5 sm:space-y-2">
-                  {['Destinations', 'Travel Tips', 'Culture', 'Food', 'Adventure', 'Wellness', 'Wildlife'].map(category => (
-                    <Link 
-                      key={category}
-                      to={`/blogs?category=${category.toLowerCase()}`}
-                      className="flex items-center justify-between py-1.5 text-sm text-gray-700 hover:text-saffron-600 group sm:py-2 sm:text-base"
-                    >
-                      <span>{category}</span>
-                      <span className="text-gray-400 group-hover:text-saffron-600">
-                        {blogs.filter(b => b.category === category).length}
-                      </span>
+                      </div>
                     </Link>
                   ))}
                 </div>
               </div>
+            )}
 
-              {/* Newsletter Sidebar */}
-              <div className="rounded-2xl border border-saffron-100 bg-gradient-to-br from-saffron-50 to-orange-50 p-4 sm:p-6">
-                <h3 className="mb-2 text-base font-bold text-gray-900 sm:mb-3 sm:text-lg">Get Travel Updates</h3>
-                <p className="mb-3 text-xs text-gray-600 sm:mb-4 sm:text-sm">
+            {/* Categories */}
+            <div className="mb-6 rounded-2xl bg-white p-5 shadow-lg sm:p-6">
+              <h3 className="mb-4 flex items-center gap-2 text-lg font-bold text-gray-900">
+                <span className="h-1 w-6 rounded-full bg-gradient-to-r from-green-500 to-emerald-600"></span>
+                Categories
+              </h3>
+              <div className="space-y-2">
+                {['Destinations', 'Travel Tips', 'Adventure', 'Culture', 'Food', 'Wellness', 'Wildlife'].map(category => (
+                  <Link 
+                    key={category}
+                    to={`/blogs?category=${category.toLowerCase()}`}
+                    className="flex items-center justify-between rounded-lg px-2 py-2 text-sm text-gray-700 transition-all hover:bg-gray-50 hover:text-saffron-600"
+                  >
+                    <span>{category}</span>
+                    <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500">
+                      {blogs.filter(b => b.category === category).length}
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Newsletter - IMPROVED */}
+            <div className="rounded-2xl bg-gradient-to-r from-saffron-500 to-orange-600 p-5 shadow-lg sm:p-6">
+              <div className="text-center">
+                <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/20 px-3 py-1 backdrop-blur-sm">
+                  <span className="text-lg">📧</span>
+                  <span className="text-xs font-medium text-white">Newsletter</span>
+                </div>
+                <h3 className="mb-2 text-lg font-bold text-white">Get Travel Updates</h3>
+                <p className="mb-4 text-sm text-white/90">
                   Subscribe to receive exclusive travel guides and offers
                 </p>
-                <div className="space-y-2 sm:space-y-3">
+                <div className="space-y-3">
                   <input
                     type="email"
                     placeholder="Enter your email"
-                    className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-saffron-300 sm:px-4 sm:py-3 sm:text-base"
+                    className="w-full rounded-full border-0 px-4 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-white/50"
                   />
-                  <button className="w-full rounded-lg bg-saffron-500 py-2.5 text-sm font-medium text-white transition-colors hover:bg-saffron-600 sm:py-3 sm:text-base">
-                    Subscribe
+                  <button className="w-full rounded-full bg-white py-2.5 text-sm font-semibold text-saffron-600 transition-all hover:shadow-lg hover:bg-gray-100">
+                    Subscribe Now
                   </button>
                 </div>
+                <p className="mt-3 text-xs text-white/70">
+                  No spam. Unsubscribe anytime.
+                </p>
               </div>
-            </aside>
-          </div>
+            </div>
+          </aside>
         </div>
       </div>
     </div>
