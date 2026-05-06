@@ -1,4 +1,4 @@
-// PackageCard.jsx
+// components/PackageCard.jsx
 import { Check, Star, Clock, Users, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -24,8 +24,8 @@ const PackageCard = ({ pkg }) => {
           </div>
         )}
 
-        {/* Image Section */}
-        <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[5/3]">
+        {/* Image Section - FIXED HEIGHT ADDED */}
+        <div className="relative h-56 overflow-hidden">
           <img 
             src={pkg.image} 
             alt={pkg.name}
@@ -39,7 +39,7 @@ const PackageCard = ({ pkg }) => {
           {/* Header */}
           <div className="mb-3 flex flex-col gap-2 sm:mb-4 sm:flex-row sm:items-start sm:justify-between">
             <div className="flex-1">
-              <h3 className="mb-1 text-lg font-bold text-gray-900 sm:text-xl">{pkg.name}</h3>
+              <h3 className="mb-1 text-lg font-bold text-gray-900 sm:text-xl line-clamp-1">{pkg.name}</h3>
               <p className="line-clamp-2 text-sm text-gray-600">{pkg.description}</p>
             </div>
             <div className="text-left sm:text-right">

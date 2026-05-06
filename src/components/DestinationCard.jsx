@@ -23,13 +23,16 @@ const DestinationCard = ({ destination }) => {
   return (
     <Link to={`/destination/${destination.id}`} className="group block">
       <div className="relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-        {/* Image Section */}
-        <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[5/3]">
-          <img 
-            src={destination.image} 
-            alt={destination.name}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
+        {/* Image Section - FIXED HEIGHT ADDED */}
+        <div className="relative h-56 overflow-hidden bg-gray-100">
+  <img 
+    src={destination.image} 
+    alt={destination.name}
+    className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+    onError={(e) => {
+      e.target.src = 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&h=600&fit=crop';
+    }}
+  />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
           
           {/* Price Tag */}

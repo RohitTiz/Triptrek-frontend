@@ -6,7 +6,7 @@ export const packages = [
     description: 'Complete Char Dham pilgrimage covering Yamunotri, Gangotri, Kedarnath, and Badrinath. A spiritual journey of a lifetime.',
     price: 25000,
     duration: '12D/11N',
-    image: 'https://www.chardhamhotels.net/images/chardham-2025.jpg',  // MATCHING with destinations.js
+    image: 'https://www.pilgrimpackages.com/upload/package/image-NESOLIDNX8FZZV6Q.jpg',
     features: [
       'Visit all 4 Dhams',
       'Expert Pilgrim Guide',
@@ -16,10 +16,10 @@ export const packages = [
       'Daily Meals'
     ],
     gallery: [
-      'https://www.chardhamhotels.net/images/chardham-2025.jpg',
-      'https://images.unsplash.com/photo-1587474260584-136574528ed5?w=1200&q=80',
-      'https://images.unsplash.com/photo-1548013146-72479768bada?w=1200&q=80',
-      'https://images.unsplash.com/photo-1593693399741-6e8ac64b8a3d?w=1200&q=80'
+      'https://cf-img-a-in.tosshub.com/sites/visualstory/wp/2024/06/Badrinath.png?size=*:900',
+      'https://badrinath-kedarnath.gov.in/css_js_2024/img/kedarnath-4k.jpg',
+      'https://badrinath-kedarnath.gov.in/Assets/image/chardham/badrinath.jpg',
+      
     ],
     rating: 4.9,
     reviews: 156,
@@ -101,6 +101,76 @@ export const packages = [
         day: 12,
         title: 'Departure',
         description: 'Morning breakfast and departure from Haridwar with blessings'
+      }
+    ]
+  },
+  {
+    id: 'thailand-package',
+    name: 'Thailand Package - Pattaya & Bangkok',
+    description: 'Experience the best of Thailand with this amazing 4 nights package covering Pattaya and Bangkok. Includes coral island tour, Alcazar show, and Safari world.',
+    price: 57404,
+    duration: '4N/5D',
+    image: 'https://www.travoticholidays.com/wp-content/uploads/2025/05/thailand-visitor-guide-things-to-do-4406.jpg',
+    features: [
+      '2 Nights in Pattaya',
+      '2 Nights in Bangkok',
+      'Coral Island Tour with Lunch',
+      'Alcazar Show',
+      'Safari World with Marine Park',
+      'Private Transfers'
+    ],
+    gallery: [
+      'https://www.holidaymonk.com/wp-content/uploads/2024/10/The-Ultimate-Travel-Guide-to-Thailand.webp',
+      'https://i.ytimg.com/vi/hYTgskRs0nQ/maxresdefault.jpg',
+      'https://www.pelago.com/img/countries/thailand/0725-0902_thailand.jpg',
+      
+    ],
+    rating: 4.8,
+    reviews: 42,
+    popular: true,
+    inclusions: [
+      '2 Nights accommodation in Pattaya (Piyada Residence Pattaya 3* - Deluxe Room)',
+      '2 Nights accommodation in Bangkok (Princeton Bangkok 4* - Superior Room)',
+      'Daily Breakfast',
+      'Coral Island Tour Pattaya with Lunch on Speed Boat (SIC)',
+      'Alcazar Show Pattaya (SIC)',
+      'Safari World with Marine Park with Lunch (Monday Closed) (SIC)',
+      '01 Way Taxi from BKK Airport to Pattaya Hotel',
+      '01 Way Taxi from Pattaya Hotel to Bangkok Hotel on Route City Tour',
+      '01 Way Taxi from Bangkok Hotel to BKK Airport'
+    ],
+    exclusions: [
+      'Flight Cost (₹63,720 extra)',
+      'Personal Expenses',
+      'Travel Insurance',
+      'Visa Fees',
+      'Anything not mentioned in inclusions'
+    ],
+    itinerary: [
+      {
+        day: 1,
+        title: 'Arrival in Bangkok & Transfer to Pattaya',
+        description: 'Arrive at Suvarnabhumi Airport (BKK). Private taxi transfer to Pattaya hotel. Check-in and relax. Evening free for leisure.'
+      },
+      {
+        day: 2,
+        title: 'Coral Island Tour & Alcazar Show',
+        description: 'Morning Coral Island tour with speed boat and lunch. Evening Alcazar Cabaret Show experience.'
+      },
+      {
+        day: 3,
+        title: 'Transfer to Bangkok with City Tour',
+        description: 'Check-out from Pattaya hotel. Private taxi transfer to Bangkok hotel with en-route city tour. Check-in and relax.'
+      },
+      {
+        day: 4,
+        title: 'Safari World & Marine Park',
+        description: 'Full day Safari World and Marine Park tour with lunch. (Note: Closed on Mondays)'
+      },
+      {
+        day: 5,
+        title: 'Departure',
+        description: 'Check-out from Bangkok hotel. Private taxi transfer to BKK Airport for departure.'
       }
     ]
   }

@@ -1,46 +1,60 @@
-import { useState } from 'react';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useState } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import {
-  MapPin, Calendar, Star, Users, Clock, Shield,
-  Check, ArrowRight, Heart, Share2, Compass,
-  ChevronLeft, ChevronRight, CreditCard, Tag,
-  AlertCircle, Phone, Mail, MessageCircle
-} from 'lucide-react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import EnquiryModal from '../components/EnquiryModal';
-import { destinations } from '../data/destinations';
-import { packages } from '../data/packages';
+  MapPin,
+  Calendar,
+  Star,
+  Users,
+  Clock,
+  Shield,
+  Check,
+  ArrowRight,
+  Heart,
+  Share2,
+  Compass,
+  ChevronLeft,
+  ChevronRight,
+  CreditCard,
+  Tag,
+  AlertCircle,
+  Phone,
+  Mail,
+  MessageCircle,
+} from "lucide-react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import EnquiryModal from "../components/EnquiryModal";
+import { destinations } from "../data/destinations";
+import { packages } from "../data/packages";
 
 const UnifiedDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
-  const [selectedDate, setSelectedDate] = useState('');
+  const [selectedDate, setSelectedDate] = useState("");
   const [travelers, setTravelers] = useState(2);
-  const [couponCode, setCouponCode] = useState('');
+  const [couponCode, setCouponCode] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isEnquiryOpen, setIsEnquiryOpen] = useState(false);
 
   // Detect if it's a destination or package based on URL path
-  const isDestination = location.pathname.includes('/destination/');
+  const isDestination = location.pathname.includes("/destination/");
   const item = isDestination
-    ? destinations.find(d => d.id === id)
-    : packages.find(p => p.id === id);
+    ? destinations.find((d) => d.id === id)
+    : packages.find((p) => p.id === id);
 
-  const images = [
-    item?.image,
-    'https://images.unsplash.com/photo-1593693399741-6e8ac64b8a3d?w=1200&q=80',
-    'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1200&q=80',
-    'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1200&q=80',
-  ];
+  // Dynamic images from data file (gallery array)
+  const images =
+    item?.gallery && item.gallery.length > 0
+      ? [item.image, ...item.gallery]
+      : [item?.image];
 
   const formatPrice = (price) => {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0
+    return new Intl.NumberFormat("en-IN", {
+      style: "currency",
+      currency: "INR",
+      maximumFractionDigits: 0,
     }).format(price);
   };
 
@@ -48,37 +62,46 @@ const UnifiedDetail = () => {
   const calculateTotalAmount = (price) => {
     let total = price * travelers;
     if (appliedCoupon) {
-      total = total - (total * appliedCoupon.discount / 100);
+      total = total - (total * appliedCoupon.discount) / 100;
     }
     return total * 1.18;
   };
 
   // WhatsApp Message Generator
   const generateWhatsAppMessage = () => {
-    const itemType = isDestination ? 'Destination' : 'Package';
-    const message = `🏔️ *TripTrek India* 🏔️%0A%0A✨ *${itemType}:* ${item.name}%0A%0A📝 *Details:*%0A${item.description.substring(0, 150)}...%0A%0A💰 *Price:* ${formatPrice(item.price)} per person%0A⏱️ *Duration:* ${item.duration}%0A⭐ *Rating:* ${item.rating}/5%0A%0A📅 *Travel Date:* ${selectedDate || 'Flexible'}%0A👥 *Travelers:* ${travelers} person(s)%0A%0A🎯 *Highlights:*%0A${(item.highlights || item.features || []).slice(0, 4).map(h => `• ${h}`).join('%0A')}%0A%0A💬 *Interested in this trip! Please share more details.*%0A%0A🙏 Thank you! - TripTrek India`;
+    const itemType = isDestination ? "Destination" : "Package";
+    const message = `🏔️ *TripTrek India* 🏔️%0A%0A✨ *${itemType}:* ${item.name}%0A%0A📝 *Details:*%0A${item.description.substring(0, 150)}...%0A%0A💰 *Price:* ${formatPrice(item.price)} per person%0A⏱️ *Duration:* ${item.duration}%0A⭐ *Rating:* ${item.rating}/5%0A%0A📅 *Travel Date:* ${selectedDate || "Flexible"}%0A👥 *Travelers:* ${travelers} person(s)%0A%0A🎯 *Highlights:*%0A${(
+      item.highlights ||
+      item.features ||
+      []
+    )
+      .slice(0, 4)
+      .map((h) => `• ${h}`)
+      .join(
+        "%0A",
+      )}%0A%0A💬 *Interested in this trip! Please share more details.*%0A%0A🙏 Thank you! - TripTrek India`;
     return message;
   };
 
   const handleWhatsAppClick = () => {
     const message = generateWhatsAppMessage();
     const whatsappUrl = `https://wa.me/917827716233?text=${message}`;
-    window.open(whatsappUrl, '_blank');
+    window.open(whatsappUrl, "_blank");
   };
 
   const applyCoupon = () => {
-    if (couponCode === 'SUMMER15') {
+    if (couponCode === "SUMMER15") {
       setAppliedCoupon({
-        code: 'SUMMER15',
-        discount: 15
+        code: "SUMMER15",
+        discount: 15,
       });
-    } else if (couponCode === 'WELCOME10') {
+    } else if (couponCode === "WELCOME10") {
       setAppliedCoupon({
-        code: 'WELCOME10',
-        discount: 10
+        code: "WELCOME10",
+        discount: 10,
       });
     } else {
-      alert('Invalid coupon code. Try SUMMER15 or WELCOME10');
+      alert("Invalid coupon code. Try SUMMER15 or WELCOME10");
     }
   };
 
@@ -89,9 +112,11 @@ const UnifiedDetail = () => {
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-blue-100 to-purple-100 sm:mb-6 sm:h-20 sm:w-20">
             <Compass className="h-8 w-8 text-blue-600 sm:h-10 sm:w-10" />
           </div>
-          <h1 className="mb-3 text-xl font-bold text-gray-800 sm:mb-4 sm:text-2xl">Item not found</h1>
+          <h1 className="mb-3 text-xl font-bold text-gray-800 sm:mb-4 sm:text-2xl">
+            Item not found
+          </h1>
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate("/")}
             className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2.5 text-sm font-semibold text-white hover:from-blue-700 hover:to-purple-700 sm:px-6 sm:py-3 sm:text-base"
           >
             <span>Go to Home</span>
@@ -125,10 +150,15 @@ const UnifiedDetail = () => {
                 </span>
               )}
               {item.difficulty && (
-                <span className={`rounded-full px-3 py-1 text-xs font-semibold text-white sm:px-4 sm:py-1.5 sm:text-sm ${
-                  item.difficulty === 'Easy' ? 'bg-emerald-500' :
-                  item.difficulty === 'Moderate' ? 'bg-amber-500' : 'bg-rose-500'
-                }`}>
+                <span
+                  className={`rounded-full px-3 py-1 text-xs font-semibold text-white sm:px-4 sm:py-1.5 sm:text-sm ${
+                    item.difficulty === "Easy"
+                      ? "bg-emerald-500"
+                      : item.difficulty === "Moderate"
+                        ? "bg-amber-500"
+                        : "bg-rose-500"
+                  }`}
+                >
                   {item.difficulty} Level
                 </span>
               )}
@@ -152,11 +182,14 @@ const UnifiedDetail = () => {
                 {[1, 2, 3, 4, 5].map((star) => (
                   <Star
                     key={star}
-                    className={`h-4 w-4 sm:h-5 sm:w-5 ${star <= Math.floor(item.rating) ? 'text-amber-400 fill-current' : 'text-gray-400'}`}
+                    className={`h-4 w-4 sm:h-5 sm:w-5 ${star <= Math.floor(item.rating) ? "text-amber-400 fill-current" : "text-gray-400"}`}
                   />
                 ))}
                 <span className="text-sm font-medium text-white sm:text-base">
-                  {item.rating} <span className="text-blue-200">({item.reviews} reviews)</span>
+                  {item.rating}{" "}
+                  <span className="text-blue-200">
+                    ({item.reviews} reviews)
+                  </span>
                 </span>
               </div>
               <div className="flex items-center gap-2 sm:gap-4">
@@ -179,65 +212,78 @@ const UnifiedDetail = () => {
           <div className="space-y-6 lg:col-span-2 sm:space-y-8">
             {/* Image Gallery */}
             <div className="overflow-hidden rounded-2xl bg-white shadow-xl">
-              <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[5/3] lg:aspect-[16/9]">
-                <img
-                  src={images[currentImageIndex]}
-                  alt={item.name}
-                  className="h-full w-full object-cover"
-                />
+              <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[5/3] lg:aspect-[16/9] bg-gray-100">
+  <img
+    src={images[currentImageIndex]}
+    alt={item.name}
+    className="h-full w-full object-contain"
+  />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                 <button
-                  onClick={() => setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length)}
+                  onClick={() =>
+                    setCurrentImageIndex(
+                      (prev) => (prev - 1 + images.length) % images.length,
+                    )
+                  }
                   className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 backdrop-blur-sm transition-all hover:bg-white hover:scale-105 sm:p-3"
                 >
                   <ChevronLeft className="h-4 w-4 sm:h-5 sm:w-5" />
                 </button>
                 <button
-                  onClick={() => setCurrentImageIndex((prev) => (prev + 1) % images.length)}
+                  onClick={() =>
+                    setCurrentImageIndex((prev) => (prev + 1) % images.length)
+                  }
                   className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-2 backdrop-blur-sm transition-all hover:bg-white hover:scale-105 sm:p-3"
                 >
                   <ChevronRight className="h-4 w-4 sm:h-5 sm:w-5" />
                 </button>
               </div>
               <div className="grid grid-cols-4 gap-1.5 p-3 sm:gap-2 sm:p-4">
-                {images.map((img, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentImageIndex(idx)}
-                    className={`overflow-hidden rounded-lg ${currentImageIndex === idx ? 'ring-2 ring-blue-500' : ''}`}
-                  >
-                    <img
-                      src={img}
-                      alt={`Gallery ${idx + 1}`}
-                      className="h-16 w-full object-cover transition-transform hover:scale-105 sm:h-20"
-                    />
-                  </button>
-                ))}
-              </div>
+  {images.map((img, idx) => (
+    <button
+      key={idx}
+      onClick={() => setCurrentImageIndex(idx)}
+      className={`overflow-hidden rounded-lg aspect-square bg-gray-100 ${currentImageIndex === idx ? 'ring-2 ring-blue-500' : ''}`}
+    >
+      <img
+        src={img}
+        alt={`Gallery ${idx + 1}`}
+        className="h-full w-full object-cover transition-transform duration-300 hover:scale-110"
+        onError={(e) => {
+          e.target.src = 'https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=400&h=400&fit=crop';
+        }}
+      />
+    </button>
+  ))}
+</div>
             </div>
 
             {/* Highlights / Features Section */}
             {(item.highlights || item.features) && (
               <div className="rounded-2xl bg-white p-4 shadow-xl sm:p-6 lg:p-8">
                 <h2 className="mb-4 text-xl font-bold text-gray-900 sm:mb-6 sm:text-2xl">
-                  {isDestination ? 'Must-Experience Highlights' : 'Package Highlights'}
+                  {isDestination
+                    ? "Must-Experience Highlights"
+                    : "Package Highlights"}
                 </h2>
                 <div className="grid grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2">
-                  {(item.highlights || item.features || []).map((highlight, index) => (
-                    <div
-                      key={index}
-                      className="group flex items-start gap-3 rounded-xl bg-gradient-to-r from-gray-50 to-white p-3 transition-all hover:shadow-md hover:-translate-y-1 sm:p-4"
-                    >
-                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-blue-100 to-purple-100 group-hover:from-blue-200 group-hover:to-purple-200 sm:h-12 sm:w-12">
-                        <Compass className="h-5 w-5 text-blue-600 sm:h-6 sm:w-6" />
+                  {(item.highlights || item.features || []).map(
+                    (highlight, index) => (
+                      <div
+                        key={index}
+                        className="group flex items-start gap-3 rounded-xl bg-gradient-to-r from-gray-50 to-white p-3 transition-all hover:shadow-md hover:-translate-y-1 sm:p-4"
+                      >
+                        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-blue-100 to-purple-100 group-hover:from-blue-200 group-hover:to-purple-200 sm:h-12 sm:w-12">
+                          <Compass className="h-5 w-5 text-blue-600 sm:h-6 sm:w-6" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-sm font-semibold text-gray-800 group-hover:text-blue-600 sm:text-base">
+                            {highlight}
+                          </h3>
+                        </div>
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-sm font-semibold text-gray-800 group-hover:text-blue-600 sm:text-base">
-                          {highlight}
-                        </h3>
-                      </div>
-                    </div>
-                  ))}
+                    ),
+                  )}
                 </div>
               </div>
             )}
@@ -247,14 +293,18 @@ const UnifiedDetail = () => {
               <div className="grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-2">
                 {item.inclusions && item.inclusions.length > 0 && (
                   <div className="rounded-2xl bg-white p-4 shadow-xl sm:p-6 lg:p-8">
-                    <h3 className="mb-4 text-lg font-bold text-gray-900 sm:mb-6 sm:text-xl">What's Included</h3>
+                    <h3 className="mb-4 text-lg font-bold text-gray-900 sm:mb-6 sm:text-xl">
+                      What's Included
+                    </h3>
                     <ul className="space-y-3 sm:space-y-4">
                       {item.inclusions.map((inc, index) => (
                         <li key={index} className="flex items-center gap-3">
                           <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-emerald-100 sm:h-6 sm:w-6">
                             <Check className="h-3 w-3 text-emerald-600 sm:h-3.5 sm:w-3.5" />
                           </div>
-                          <span className="text-sm text-gray-700 sm:text-base">{inc}</span>
+                          <span className="text-sm text-gray-700 sm:text-base">
+                            {inc}
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -262,14 +312,18 @@ const UnifiedDetail = () => {
                 )}
                 {item.exclusions && item.exclusions.length > 0 && (
                   <div className="rounded-2xl bg-white p-4 shadow-xl sm:p-6 lg:p-8">
-                    <h3 className="mb-4 text-lg font-bold text-gray-900 sm:mb-6 sm:text-xl">What's Not Included</h3>
+                    <h3 className="mb-4 text-lg font-bold text-gray-900 sm:mb-6 sm:text-xl">
+                      What's Not Included
+                    </h3>
                     <ul className="space-y-3 sm:space-y-4">
                       {item.exclusions.map((exc, index) => (
                         <li key={index} className="flex items-center gap-3">
                           <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-gray-100 sm:h-6 sm:w-6">
                             <AlertCircle className="h-3 w-3 text-gray-600 sm:h-3.5 sm:w-3.5" />
                           </div>
-                          <span className="text-sm text-gray-700 sm:text-base">{exc}</span>
+                          <span className="text-sm text-gray-700 sm:text-base">
+                            {exc}
+                          </span>
                         </li>
                       ))}
                     </ul>
@@ -288,7 +342,9 @@ const UnifiedDetail = () => {
                   <div className="mb-1 text-2xl font-bold text-gray-900 sm:text-3xl lg:text-4xl">
                     {formatPrice(item.price)}
                   </div>
-                  <div className="text-xs text-gray-500 sm:text-sm">per person</div>
+                  <div className="text-xs text-gray-500 sm:text-sm">
+                    per person
+                  </div>
                 </div>
 
                 {/* Date Selection */}
@@ -301,7 +357,7 @@ const UnifiedDetail = () => {
                     type="date"
                     value={selectedDate}
                     onChange={(e) => setSelectedDate(e.target.value)}
-                    min={new Date().toISOString().split('T')[0]}
+                    min={new Date().toISOString().split("T")[0]}
                     className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200 sm:px-4 sm:py-3"
                   />
                 </div>
@@ -319,7 +375,9 @@ const UnifiedDetail = () => {
                     >
                       -
                     </button>
-                    <span className="text-sm font-semibold sm:text-base">{travelers} persons</span>
+                    <span className="text-sm font-semibold sm:text-base">
+                      {travelers} persons
+                    </span>
                     <button
                       onClick={() => setTravelers(Math.min(15, travelers + 1))}
                       className="flex h-8 w-8 items-center justify-center rounded-lg hover:bg-gray-100 sm:h-10 sm:w-10"
@@ -366,17 +424,34 @@ const UnifiedDetail = () => {
                   {appliedCoupon && (
                     <div className="flex justify-between text-xs text-emerald-600 sm:text-sm">
                       <span>Discount ({appliedCoupon.discount}%)</span>
-                      <span>-{formatPrice((item.price * travelers * appliedCoupon.discount) / 100)}</span>
+                      <span>
+                        -
+                        {formatPrice(
+                          (item.price * travelers * appliedCoupon.discount) /
+                            100,
+                        )}
+                      </span>
                     </div>
                   )}
                   <div className="flex justify-between text-xs text-gray-600 sm:text-sm">
                     <span>Taxes & Fees (18%)</span>
-                    <span>{formatPrice((item.price * travelers * (appliedCoupon ? (100 - appliedCoupon.discount) / 100 : 1)) * 0.18)}</span>
+                    <span>
+                      {formatPrice(
+                        item.price *
+                          travelers *
+                          (appliedCoupon
+                            ? (100 - appliedCoupon.discount) / 100
+                            : 1) *
+                          0.18,
+                      )}
+                    </span>
                   </div>
                   <div className="border-t pt-2 sm:pt-3">
                     <div className="flex justify-between text-base font-bold sm:text-lg">
                       <span>Total Amount</span>
-                      <span>{formatPrice(calculateTotalAmount(item.price))}</span>
+                      <span>
+                        {formatPrice(calculateTotalAmount(item.price))}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -387,9 +462,14 @@ const UnifiedDetail = () => {
                     onClick={handleWhatsAppClick}
                     className="flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-green-500 to-green-600 py-3 text-sm font-semibold text-white transition-all hover:from-green-600 hover:to-green-700 hover:shadow-lg sm:py-4 sm:text-base"
                   >
-                    <svg className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.086 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-                      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.55 4.128 1.513 5.874L0 24l6.336-1.657C8.057 23.193 9.99 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.8 0-3.525-.49-5.01-1.342l-.358-.207-3.766.986.998-3.66-.217-.36C3.423 15.635 2.8 13.874 2.8 12c0-5.07 4.13-9.2 9.2-9.2s9.2 4.13 9.2 9.2-4.13 9.2-9.2 9.2z"/>
+                    <svg
+                      className="h-5 w-5"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.019-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.625.712.227 1.36.195 1.871.118.571-.086 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+                      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.126.55 4.128 1.513 5.874L0 24l6.336-1.657C8.057 23.193 9.99 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.8 0-3.525-.49-5.01-1.342l-.358-.207-3.766.986.998-3.66-.217-.36C3.423 15.635 2.8 13.874 2.8 12c0-5.07 4.13-9.2 9.2-9.2s9.2 4.13 9.2 9.2-4.13 9.2-9.2 9.2z" />
                     </svg>
                     <span>Book via WhatsApp</span>
                   </button>
@@ -422,7 +502,9 @@ const UnifiedDetail = () => {
               <div className="rounded-2xl bg-gradient-to-br from-blue-50 to-purple-50 p-4 sm:p-6">
                 <div className="mb-3 flex items-center gap-2 sm:mb-4 sm:gap-3">
                   <Shield className="h-5 w-5 text-blue-600 sm:h-6 sm:w-6" />
-                  <h4 className="text-sm font-bold text-gray-900 sm:text-base">Book with Confidence</h4>
+                  <h4 className="text-sm font-bold text-gray-900 sm:text-base">
+                    Book with Confidence
+                  </h4>
                 </div>
                 <ul className="space-y-1.5 text-xs text-gray-700 sm:space-y-2 sm:text-sm">
                   <li className="flex items-center gap-2">
@@ -464,7 +546,7 @@ const UnifiedDetail = () => {
         isOpen={isEnquiryOpen}
         onClose={() => setIsEnquiryOpen(false)}
         itemName={item.name}
-        itemType={isDestination ? 'Destination' : 'Package'}
+        itemType={isDestination ? "Destination" : "Package"}
       />
 
       <Footer />
